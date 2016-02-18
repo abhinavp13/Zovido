@@ -1,6 +1,8 @@
 package com.pabhinav.zovido;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,8 +30,16 @@ public class AboutActivity extends AppCompatActivity {
         }
 
         TextView textView = ((TextView) findViewById(R.id.textView5));
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
         textView.setText("https://github.com/abhinavp13/Zovido");
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Uri uri = Uri.parse("https://github.com/abhinavp13/Zovido"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
     }
 
     public void backArrowPressed(View v){
