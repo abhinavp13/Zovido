@@ -1,8 +1,10 @@
 package com.pabhinav.zovido;
 
 import android.content.pm.PackageManager;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,18 +27,9 @@ public class AboutActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-
-
-        /**TODO :  Github link  **/
-        /** t2.setMovementMethod(LinkMovementMethod.getInstance()); **/
-
-
-
-
-
-
+        TextView textView = ((TextView) findViewById(R.id.textView5));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+        textView.setText("https://github.com/abhinavp13/Zovido");
     }
 
     public void backArrowPressed(View v){
