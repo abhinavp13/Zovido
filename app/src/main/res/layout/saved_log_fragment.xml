@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/call_save_black"
+            android:id="@+id/imageView4"
+            android:layout_above="@+id/loading_in_saved_call_log"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/loading_in_saved_call_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:text = "No Saved Logs To Upload"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/saved_log_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
+
+
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/fake_background_effect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:onClick="uploadClicked"
+        android:background="#55000000" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        app:backgroundTint="@color/blue_light"
+        android:onClick="uploadClicked"
+        android:layout_margin="16dp"
+        app:elevation="12dp"
+        android:src="@drawable/ic_file_upload_white_24dp"
+        app:pressedTranslationZ="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/export_to_local_storage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        android:onClick="localExportClicked"
+        app:backgroundTint="@color/blue_light"
+        android:layout_above="@id/fab_upload"
+        android:layout_marginEnd="24dp"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        app:elevation="12dp"
+        android:src="@drawable/export_file"
+        app:pressedTranslationZ="8dp"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/export_to_cloud_storage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        android:layout_marginEnd="24dp"
+        android:onClick="cloudExportClicked"
+        app:backgroundTint="@color/blue_light"
+        app:elevation="12dp"
+        android:src="@drawable/cloud_export"
+        app:pressedTranslationZ="8dp"
+        android:layout_above="@id/export_to_local_storage"
+        android:layout_alignParentRight="true" />
+
+
+    <TextView
+        android:id="@+id/text_for_export_to_local_storage"
+        android:background="@android:color/white"
+        android:elevation="4dp"
+        android:onClick="localExportClicked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text = "Export To Local Storage"
+        android:visibility="gone"
+        android:gravity="center"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:layout_margin="8dp"
+        android:layout_alignBottom="@+id/export_to_local_storage"
+        android:layout_toStartOf="@+id/export_to_local_storage"
+        android:layout_alignTop="@+id/export_to_local_storage" />
+
+    <TextView
+        android:id="@+id/text_for_export_to_drive"
+        android:background="@android:color/white"
+        android:onClick="cloudExportClicked"
+        android:elevation="4dp"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text = "Export To Drive"
+        android:gravity="center"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:layout_margin="8dp"
+        android:layout_alignBottom="@+id/export_to_cloud_storage"
+        android:layout_toStartOf="@+id/export_to_cloud_storage"
+        android:layout_alignTop="@+id/export_to_cloud_storage" />
+
+
+
+
+
+</RelativeLayout>

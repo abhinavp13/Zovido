@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:background="@color/blue_light">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="200dp"
+        android:onClick="navigationHeaderClicked"
+        android:id="@+id/header_relative_layout">
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@mipmap/ic_launcher"
+            android:id="@+id/app_icon_white_image_view"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/agent_name_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="16dp"
+            android:textSize="24sp"
+            android:padding="4dp"
+            android:text= "Abhinav Puri"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:gravity="center"
+            android:layout_below="@+id/app_icon_white_image_view"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#22000000"
+        android:onClick="navigationHeaderClicked"
+        android:layout_below="@+id/header_relative_layout"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
+        
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text = "200"
+                android:id="@+id/recent_count_text_view"
+                android:gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:text="Recent Calls"
+                android:layout_below="@+id/recent_count_text_view"
+                android:layout_alignStart="@+id/recent_count_text_view"
+                android:layout_marginBottom="8dp"
+                android:layout_alignParentEnd="true" />
+            
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:text = "1"
+                android:id="@+id/saved_count_text_view"
+                android:gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:layout_marginBottom="8dp"
+                android:text="Saved Calls"
+                android:layout_below="@+id/saved_count_text_view"
+                android:layout_alignStart="@+id/saved_count_text_view"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+        
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:padding="16dp"
+        android:onClick="changeAccountClicked"
+        android:background="@drawable/drawer_item_background"
+        android:layout_alignParentStart="true"
+        android:id="@+id/relativeLayout">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/account_edit"
+            android:id="@+id/imageView" />
+
+        <TextView
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:text="Change Drive Account"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_toEndOf="@+id/imageView"
+            android:layout_alignParentTop="true" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:id="@+id/below_relativeLayout"
+        android:background="@android:color/white"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignParentStart="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/below_relativeLayout"
+        android:padding="16dp"
+        android:onClick="feedbackClicked"
+        android:background="@drawable/drawer_item_background"
+        android:layout_alignParentStart="true"
+        android:id="@+id/feedback_relativeLayout">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/feedback"
+            android:id="@+id/imageView2" />
+
+        <TextView
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:text="Feedback"
+            android:layout_alignBottom="@+id/imageView2"
+            android:layout_toEndOf="@+id/imageView2"
+            android:layout_alignParentTop="true" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:id="@+id/below_feedback"
+        android:background="@android:color/white"
+        android:layout_below="@+id/feedback_relativeLayout"
+        android:layout_alignParentStart="true" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/below_feedback"
+        android:padding="16dp"
+        android:onClick="aboutClicked"
+        android:background="@drawable/drawer_item_background"
+        android:layout_alignParentStart="true"
+        android:id="@+id/about_relativeLayout">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/about"
+            android:id="@+id/imageView3" />
+
+        <TextView
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:text="About"
+            android:layout_alignBottom="@+id/imageView3"
+            android:layout_toEndOf="@+id/imageView3"
+            android:layout_alignParentTop="true" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@android:color/white"
+        android:layout_below="@+id/about_relativeLayout"
+        android:layout_alignParentStart="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="navigationHeaderClicked"
+        android:layout_below="@id/about_relativeLayout"
+        android:background="@android:color/transparent" />
+
+</RelativeLayout>

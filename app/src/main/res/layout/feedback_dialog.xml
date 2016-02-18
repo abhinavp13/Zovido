@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:myedittext="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue_light"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:id="@+id/fake_action_bar"
+        android:background="@color/blue_light"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:id="@+id/imageView6"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/app_title_dialog">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/smiley1"
+
+             />
+
+        </RelativeLayout>
+        
+        
+        <TextView
+            android:id="@+id/app_title_dialog"
+            android:layout_marginLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@android:color/white"
+            android:text = "@string/app_name"
+            android:layout_toEndOf="@+id/imageView6" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@+id/fake_action_bar"
+        android:text="Love to hear about Zovido from you !"
+        android:id="@+id/textView10" />
+
+
+    <TextView
+        android:id="@+id/feedback_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your feedback : "
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:layout_below="@+id/textView10"
+        android:layout_alignParentStart="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="152dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/feedback_heading"
+        android:background="@color/blue_light"
+        android:layout_alignLeft="@+id/feedback_heading"
+        android:layout_alignStart="@+id/feedback_heading"
+        android:id="@+id/feedback_rectangle" />
+
+    <com.pabhinav.zovido.MyEditText
+        android:id="@+id/feedback_edit_text"
+        android:layout_width="match_parent"
+        android:layout_marginRight="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginStart="1dp"
+        android:padding = "5dp"
+        android:gravity="start"
+        android:singleLine="false"
+        android:maxLines="10"
+        android:background="@android:color/white"
+        android:layout_height="150dp"
+        android:layout_below="@+id/feedback_heading"
+        android:layout_alignLeft="@+id/feedback_rectangle"
+        android:layout_alignStart="@+id/feedback_rectangle" />
+
+    <RelativeLayout
+        android:layout_gravity="center|right"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/blue_light"
+        android:layout_below="@+id/feedback_rectangle">
+
+        <TextView
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/send_button"
+            android:gravity="center"
+            android:text = "Send"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:paddingLeft="30dp"
+            android:paddingStart="30dp"
+            android:paddingRight="20dp"
+            android:paddingEnd="20dp"
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text = "Cancel"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_toStartOf="@+id/send_button"
+            android:layout_toLeftOf="@+id/send_button" />
+        
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

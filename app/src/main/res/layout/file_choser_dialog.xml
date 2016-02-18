@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_light">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginTop="4dp"
+        android:padding="4dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/directory_text_view"
+        android:textColor="@android:color/white"
+        android:text = "/storage/emulated/0" />
+    
+    <Button
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
+        android:text = "New Folder"
+        android:layout_below="@+id/directory_text_view"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/new_folder_button" />
+    
+    
+    <ListView
+        android:id="@+id/my_list_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_folder_button"
+        android:layout_above="@+id/snackbar" />
+
+    <RelativeLayout
+        android:id="@+id/snackbar"
+        android:layout_gravity="center|right"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/select_button"
+            android:gravity="center"
+            android:text = "Select"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:paddingLeft="30dp"
+            android:paddingStart="30dp"
+            android:paddingRight="20dp"
+            android:paddingEnd="20dp"
+            android:id="@+id/cancel_directory_choser_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text = "Cancel"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_toStartOf="@+id/select_button"
+            android:layout_toLeftOf="@+id/select_button" />
+
+    </RelativeLayout>
+
+
+    <!-- Shadow -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_above="@+id/my_list_view"
+        android:background="@drawable/shadow_background" />
+
+</RelativeLayout>

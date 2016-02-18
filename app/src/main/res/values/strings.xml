@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Zovido</string>
+    <string name="new_user">New User</string>
+    <string name="existing_user">Existing User</string>
+    <string name="fixed_product">Fixed Product</string>
+    <string name="custom_product">Custom Product</string>
+
+    <string-array name="user_type_array">
+        <item>New User</item>
+        <item>Existing User</item>
+        <item>+ Add Custom Entry</item>
+    </string-array>
+
+    <string-array name="product_type_array">
+        <item>Fixed Product</item>
+        <item>Custom Product</item>
+        <item>+ Add Custom Entry</item>
+    </string-array>
+
+    <string name="txtCredits"><a href="http://www.google.com">http://www.google.com</a></string>
+
+
+    <string name="crash_toast_text">Ooooops ! I crashed, but a report has been sent to my developer to help fix the issue !</string>
+
+    <string name="crash_dialog_title">Zovido has crashed</string>
+<string name="crash_dialog_text">An unexpected error occurred forcing the
+    application to stop. Please help us fix this by sending us error data,
+    all you have to do is click OK.</string>
+    <string name="crash_dialog_comment_prompt">You might add your comments about the problem below:</string>
+    <string name="crash_dialog_ok_toast">Thank you !</string>
+
+</resources>

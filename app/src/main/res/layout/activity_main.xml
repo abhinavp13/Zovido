@@ -1,0 +1,93 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root_layout" >
+
+
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/main_layout"
+        android:background="@color/blue_light">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor = "@android:color/white"
+            android:layout_marginTop="50dp"
+            android:textSize="40sp"
+            android:text = "Z Ø V I D Ö"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:typeface="serif"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/app_title_text_view" />
+
+
+        <ImageView
+            android:id="@+id/icon_image_view"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:visibility="invisible"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/app_title_text_view"
+            android:background="@drawable/phone_plus_cloud_white_24_1"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_marginTop="50dp"
+            android:id="@+id/icon_image_view_1"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/cloud_24"
+            android:layout_below="@+id/app_title_text_view"
+            android:layout_alignEnd="@+id/app_title_text_view" />
+
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:id="@+id/text_get_you_started"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_gravity = "center"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            android:text="Helps save your call details to cloud"
+            android:layout_below="@+id/icon_image_view"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_marginTop="50dp"
+            android:id="@+id/icon_image_view_2"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/white_phone_24"
+            android:layout_below="@+id/app_title_text_view"
+            android:layout_alignStart="@+id/app_title_text_view" />
+
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_marginTop="50dp"
+            android:id="@+id/transition_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:onClick="forwardClicked"
+            android:visibility="gone"
+            app:backgroundTint="@android:color/white"
+            app:elevation="12dp"
+            android:src="@drawable/ic_arrow_forward_black_24dp"
+            app:pressedTranslationZ="12dp"
+            android:layout_below="@+id/text_get_you_started"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+</FrameLayout>

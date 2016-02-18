@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="com.pabhinav.zovido.AboutActivity">
+
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:id="@+id/action_bar"
+        android:background="@color/blue_light"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_marginLeft="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:text = "About This App"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/relativeLayout2" />
+
+        <RelativeLayout
+            android:onClick="backArrowPressed"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:gravity="center"
+            android:id="@+id/relativeLayout2">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_arrow_back_white_24dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:padding="20dp"
+        android:text = "Z o v i d o    F o r    A n d r o i d"
+        android:layout_below="@+id/action_bar"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/heading_grey_dark"
+        android:text = "Call Details Saving App"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@mipmap/ic_launcher"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/version_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text = "App Version : v1.0"
+        android:textColor="@color/heading_grey_dark"
+        android:layout_below="@+id/imageView5"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/heading_grey_dark"
+        android:layout_marginTop="10dp"
+        android:text = "© 2016 Abhinav Puri. All rights reserved"
+        android:layout_below="@+id/version_text_view"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/heading_grey_dark"
+        android:layout_marginTop="40dp"
+        android:text = "Fork me on GitHub!"
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/version_text_view"
+        android:id="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/blue_light"
+        android:text = "@string/txtCredits"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView5" />
+
+    <TextView
+        android:paddingTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/heading_grey_dark"
+        android:gravity="center"
+        android:text = "Zovido is an open source app used to save your call details in .xls format."
+        android:layout_below="@+id/textView5"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView6" />
+
+    <TextView
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/heading_grey_dark"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:layout_below="@+id/textView6"
+        android:text = "(Thanks to Nitin Jain for idea and inspiration)"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView9" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/heading_grey_dark"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/textView9"
+        android:text = "'That it will never come again, Is what makes life so sweet' - Emily Dickinson"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView8" />
+
+    <TextView
+        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/heading_grey_dark"
+        android:gravity="center"
+        android:text = "Android is a trademark of Google Inc."
+        android:id="@+id/textView7"
+        android:layout_below="@+id/textView8"
+        android:layout_centerHorizontal="true" />
+
+
+
+    <View
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/blue_light"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/view3" />
+
+    <!-- Shadow -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_below="@+id/action_bar"
+        android:background="@drawable/shadow_background" />
+
+</RelativeLayout>

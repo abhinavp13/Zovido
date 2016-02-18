@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myedittext="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/blue_light"
+    android:id="@+id/main_layout">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor = "@android:color/white"
+        android:layout_marginTop="50dp"
+        android:textSize="40sp"
+        android:text = "Z Ø V I D Ö"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:typeface="serif"
+        android:layout_alignParentTop="true"
+        android:id="@+id/app_title_text_view"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:id="@+id/transition_view"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:elevation="20dp"
+        android:background="@android:color/white"
+        android:layout_centerInParent="true">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="What is your name ?"
+            android:textColor= "@android:color/black"
+            android:layout_centerInParent="true"
+            android:id="@+id/name_asking_text_view" />
+
+
+        <!-- User Name -->
+
+        <com.pabhinav.zovido.MyEditTextHeading
+            android:id="@+id/name_heading_in_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:visibility="invisible"
+            android:text="What is your name ?"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/name_underline_in_main"
+            android:layout_width="wrap_content"
+            android:background="@color/heading_grey"
+            android:visibility="invisible"
+            android:layout_height="1dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="6dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/name_forward_button" />
+
+        <com.pabhinav.zovido.MyEditText
+            android:id="@+id/input_name_in_main"
+            android:inputType="textPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:visibility="invisible"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:background="@null"
+            myedittext:headingText = "@id/name_heading_in_main"
+            myedittext:underline="@id/name_underline_in_main"
+            android:layout_above="@+id/name_underline_in_main"
+            android:layout_below="@+id/name_heading_in_main"
+            android:layout_toStartOf="@+id/name_forward_button" />
+        
+        
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/blue_forward"
+            android:visibility="gone"
+            android:id="@+id/name_forward_button"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

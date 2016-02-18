@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="item_pressed">#7090d7</color>
+    <color name="blue_light">#3361C7</color>
+    <color name="blue">#1F3A77</color>
+    <color name="hint_grey">#CCCCCC</color>
+    <color name="heading_grey">#808080</color>
+    <color name="heading_grey_dark">#505050</color>
+    <color name="recycler_background">#eeeeee</color>
+</resources>
