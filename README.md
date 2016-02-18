@@ -1,6 +1,6 @@
-Android Zovido App ![LOGO] [4]
-==================
-Zovido is an Open Source app allowing you to save some additional call details in .xls format to your phone's memory or to your linked drive account. (It was customized as per requirements, but can be modified or extended easily.)
+Zovido App ![LOGO] [4]
+==========
+Zovido is an Open Source android app allowing you to save some additional call details in .xls format to your phone's memory or to your linked drive account. (It was customized as per requirements, but can be modified or extended easily.)
  
 Features
 ========
