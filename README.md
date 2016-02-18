@@ -53,4 +53,4 @@ License
 [1]: ./demopics/svgPathAnimation.gif
 [2]: ./demopics/ballBouncingAndRevealEffect.gif
 [3]: ./demopics/loginAndRegister.gif
-[4]: ./demopics/logo.png
+[4]: ./demopics/logo_1.png
