@@ -37,6 +37,16 @@
         android:layout_centerHorizontal="true"/>
 
 
+    <ImageView
+        android:id="@+id/spinner_hidden"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:visibility="invisible"
+        android:background="@drawable/spinner_hidden_1"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"

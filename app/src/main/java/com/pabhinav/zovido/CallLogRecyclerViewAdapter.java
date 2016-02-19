@@ -85,13 +85,16 @@ public class CallLogRecyclerViewAdapter extends RecyclerView.Adapter<CallLogRecy
     }
 
     public void updateAllAtOnce(ArrayList<CallDataObjectParcel> dataObjectParcels){
+
         mDataset = new ArrayList<>();
         mDataset.addAll(dataObjectParcels);
         notifyDataSetChanged();
 
+        /** Set Counter value in drawer **/
         if(recentCounterTextView != null){
             recentCounterTextView.setText(String.valueOf(mDataset.size()));
         }
+
         /** Hide loading spinner **/
         hideLoadingSpinner();
     }
@@ -101,15 +104,28 @@ public class CallLogRecyclerViewAdapter extends RecyclerView.Adapter<CallLogRecy
         ImageView spinner = (ImageView) ((Activity)context).findViewById(R.id.spinner);
         ImageView spinnerCover = (ImageView) ((Activity)context).findViewById(R.id.imageView_spinner_cover);
         TextView loadingTextView = (TextView) ((Activity)context).findViewById(R.id.loading_in_call_log);
-        if(spinner!= null && spinnerCover != null && loadingTextView != null) {
-            spinner.setVisibility(View.GONE);
-            spinnerCover.setVisibility(View.GONE);
-            loadingTextView.setVisibility(View.GONE);
-        }
-
         RecyclerView recyclerView = (RecyclerView) ((Activity) context).findViewById(R.id.my_recycler_view);
-        if(recyclerView != null) {
-            recyclerView.setBackgroundColor(context.getResources().getColor(R.color.recycler_background));
+
+        if(spinner!= null && spinnerCover != null && loadingTextView != null && recyclerView != null) {
+
+            /** Make sure to have empty call log check before assuring that a person don't have call logs **/
+            if(getItemCount() == 0 && CallLogTab.isEmptyCallLog){
+                spinner.clearAnimation();
+                loadingTextView.setText("No Call Logs Found");
+                ((Activity)context).findViewById(R.id.spinner_hidden).setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.INVISIBLE);
+                return;
+            } else {
+                ((Activity)context).findViewById(R.id.spinner_hidden).setVisibility(View.GONE);
+            }
+
+            if(getItemCount() != 0) {
+                spinner.setVisibility(View.GONE);
+                spinnerCover.setVisibility(View.GONE);
+                loadingTextView.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+                recyclerView.setBackgroundColor(context.getResources().getColor(R.color.recycler_background));
+            }
         }
     }
 

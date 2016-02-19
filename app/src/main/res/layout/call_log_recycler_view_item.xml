@@ -52,6 +52,16 @@
                 android:id="@+id/name" />
 
             <ImageView
+                android:id="@+id/saved_tick_image_view"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd = "10dp"
+                android:visibility="invisible"
+                android:background="@drawable/saved_tick"
+                android:layout_alignTop="@+id/call_type"
+                android:layout_toStartOf="@+id/call_type" />
+
+            <ImageView
                 android:id="@+id/call_type"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -114,18 +124,6 @@
                 android:layout_alignRight="@+id/phone_number"
                 android:layout_alignEnd="@+id/phone_number"
                 android:id="@+id/duration" />
-
-
-
-                <!--<View-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:background="@android:color/transparent"-->
-                    <!--android:layout_alignTop="@+id/name"-->
-                    <!--android:layout_alignBottom="@+id/view2" />-->
-
-            <!--</com.andexert.library.RippleView>-->
-
 
 
         </RelativeLayout>

@@ -32,6 +32,7 @@ public class CallLogTab extends Fragment {
     RecyclerView mRecyclerView;
     private static CallLogRecyclerViewAdapter mAdapter;
     private static ArrayList<CallDataObjectParcel> cachedCallLogs;
+    public static boolean isEmptyCallLog = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,6 +68,10 @@ public class CallLogTab extends Fragment {
 
         registerAndStartService();
 
+        /**
+         * This is added becoz CallDetailsReceiver can be called
+         * before even adapter has been loaded, so in order to
+         * have consistency, we update on every onResume. **/
         updateAdapterIfDataAvailable();
     }
 
@@ -74,7 +79,7 @@ public class CallLogTab extends Fragment {
 
         ArrayList<CallDataObjectParcel> callLogs = cachedCallLogs;
 
-        if(callLogs != null && mAdapter != null && callLogs.size() > 0){
+        if(callLogs != null && mAdapter != null){
             mAdapter.updateAllAtOnce(callLogs);
         }
     }
@@ -108,6 +113,9 @@ public class CallLogTab extends Fragment {
 
             if(callLogs!=null && callLogs.size() >0) {
 
+                /** User has some call logs **/
+                isEmptyCallLog = false;
+
                 /** Force stop updating on duplicate intent received **/
                 if(cachedCallLogs != null && cachedCallLogs.size() > 0){
                     if(cachedCallLogs.get(0).equals(callLogs.get(0))){
@@ -115,6 +123,7 @@ public class CallLogTab extends Fragment {
                     }
                 }
 
+                /** Check if returned is a subpart of call logs **/
                 if(intent.getExtras().getBoolean(Constants.isSubPart)){
                     cachedCallLogs.addAll(0,callLogs);
                 } else {
@@ -124,6 +133,16 @@ public class CallLogTab extends Fragment {
 
                 if (mAdapter != null) {
                     mAdapter.updateAllAtOnce(cachedCallLogs);
+                }
+            } else if(callLogs != null){
+
+                /** if call logs are not null but are empty and they are not a subpart of call logs **/
+                if(!intent.getExtras().getBoolean(Constants.isSubPart)){
+                    cachedCallLogs = new ArrayList<>();
+                    isEmptyCallLog = true;
+                    if(mAdapter != null){
+                        mAdapter.updateAllAtOnce(cachedCallLogs);
+                    }
                 }
             }
 
