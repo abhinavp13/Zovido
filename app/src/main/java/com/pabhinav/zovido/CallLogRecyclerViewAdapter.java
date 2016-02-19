@@ -31,6 +31,7 @@ public class CallLogRecyclerViewAdapter extends RecyclerView.Adapter<CallLogRecy
         TextView phoneNumber;
         TextView callDuration;
         ImageView callType;
+        ImageView tickImage;
 
         public CallDataObjectParcelHolder(View itemView) {
             super(itemView);
@@ -40,6 +41,7 @@ public class CallLogRecyclerViewAdapter extends RecyclerView.Adapter<CallLogRecy
             phoneNumber = (TextView) itemView.findViewById(R.id.phone_number);
             callDuration = (TextView) itemView.findViewById(R.id.duration);
             callType = (ImageView) itemView.findViewById(R.id.call_type);
+            tickImage = (ImageView) itemView.findViewById(R.id.saved_tick_image_view);
 
             itemView.setOnClickListener(this);
         }
@@ -81,6 +83,18 @@ public class CallLogRecyclerViewAdapter extends RecyclerView.Adapter<CallLogRecy
             holder.callType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.outgoing_call));
         } else {
             holder.callType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.missed_call));
+        }
+        if(mDataset.get(position).isShowTick()){
+            holder.tickImage.setVisibility(View.VISIBLE);
+        } else {
+            holder.tickImage.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void updateTick(int position){
+        if(position != -1){
+            mDataset.get(position).setShowTick(true);
+            notifyDataSetChanged();
         }
     }
 
@@ -140,5 +154,9 @@ public class CallLogRecyclerViewAdapter extends RecyclerView.Adapter<CallLogRecy
 
     public interface MyClickListener {
         public void onItemClick(int position, View v);
+    }
+
+    public ArrayList<CallDataObjectParcel> getAllItems(){
+        return mDataset;
     }
 }

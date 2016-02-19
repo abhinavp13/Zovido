@@ -48,6 +48,7 @@ public class Feedback extends AppCompatActivity {
     private TextView inputCallDuration;
     private MyEditText remarksEditText;
     private ScrollView scrollView;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class Feedback extends AppCompatActivity {
                 callRemarks = null;
                 toggleUserType = false;
                 toggleProductType = false;
+                position = -1;
 
             } else {
                 phoneNumber= extras.getString(Constants.phoneNumber);
@@ -81,6 +83,7 @@ public class Feedback extends AppCompatActivity {
                 callRemarks = extras.getString(Constants.callRemarks);
                 toggleUserType = extras.getBoolean(Constants.toggleUserType);
                 toggleProductType = extras.getBoolean(Constants.toggleProductType);
+                position = extras.getInt(Constants.position);
             }
         } else {
             phoneNumber = (String) savedInstanceState.getSerializable(Constants.phoneNumber);
@@ -93,6 +96,7 @@ public class Feedback extends AppCompatActivity {
             callRemarks = (String) savedInstanceState.getSerializable(Constants.callRemarks);
             toggleUserType = (boolean) savedInstanceState.getSerializable(Constants.toggleUserType);
             toggleProductType = (boolean) savedInstanceState.getSerializable(Constants.toggleProductType);
+            position = (int) savedInstanceState.getSerializable(Constants.position);
         }
 
 
@@ -353,6 +357,7 @@ public class Feedback extends AppCompatActivity {
 
     private void passActivityResult(){
         Intent intent = new Intent();
+        intent.putExtra(Constants.position, position);
         intent.putExtra(Constants.dataPojo, getDataPojo());
         setResult(Constants.feedbackActivityRequestCode, intent);
     }

@@ -1,5 +1,6 @@
 package com.pabhinav.zovido;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,6 +24,24 @@ public class SavedLogTab extends Fragment {
     RecyclerView mRecyclerView;
     public static SavedLogRecyclerViewAdapter savedLogRecyclerViewAdapter;
     private MyApplication myApplication;
+    private OnSavedLogsDataReadFromDBListener savedLogsDataReadFromDBListener;
+
+
+    interface OnSavedLogsDataReadFromDBListener{
+        void onSavedLogsDataReadFromDB(ArrayList<DataParcel> dataParcels);
+    }
+
+    @Override
+    public void onAttach(Activity activity){
+        super.onAttach(activity);
+
+        /** Make sure that parent activity implements above interface **/
+        try{
+            savedLogsDataReadFromDBListener = (OnSavedLogsDataReadFromDBListener)activity;
+        } catch (ClassCastException e){
+            throw new ClassCastException(activity.toString() + " must implement OnSavedLogsDataReadFromDBListener");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +74,9 @@ public class SavedLogTab extends Fragment {
 
                 if(dataParcels != null){
                     savedLogRecyclerViewAdapter.addAllItem(dataParcels,0);
+
+                    /** inform attached activity that we have read data from db **/
+                    savedLogsDataReadFromDBListener.onSavedLogsDataReadFromDB(savedLogRecyclerViewAdapter.getAllItems());
                 }
             }
         });

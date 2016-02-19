@@ -34,4 +34,5 @@ public class Constants {
     public static final String acraPrefs = "Zovido.acraPrefs";
     public static final String feedbackMap = "FEEBACKMAP";
     public static final String acraMap = "ACRAMAP";
+    public static final String position = "POSITION";
 }

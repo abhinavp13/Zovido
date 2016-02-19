@@ -27,6 +27,7 @@ import com.google.android.gms.drive.MetadataChangeSet;
 
 import java.io.File;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 
 import jxl.write.Label;
@@ -35,7 +36,7 @@ import jxl.write.WritableWorkbook;
 
 import static jxl.Workbook.createWorkbook;
 
-public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener {
+public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener, SavedLogTab.OnSavedLogsDataReadFromDBListener {
 
     public static String AGENT_NAME = "";
     private static final int REQUEST_CODE_CREATOR = 2;
@@ -44,6 +45,7 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
     private GoogleApiClient mGoogleApiClient;
     private boolean showDialogOnConnectionComplete;
     private Label[][] labels;
+    private PagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +92,8 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
+        viewPagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -413,9 +415,7 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
     }
 
     @Override
-    public void onConnectionSuspended(int i) {
-
-    }
+    public void onConnectionSuspended(int i) {}
 
     @Override
     public void onConnectionFailed(ConnectionResult result) {
@@ -555,5 +555,14 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
             }
         });
 
+    }
+
+    @Override
+    public void onSavedLogsDataReadFromDB(ArrayList<DataParcel> dataParcelArrayList) {
+
+        /** Tell Call Logs that update ticks **/
+        if(dataParcelArrayList != null && dataParcelArrayList.size() >0) {
+            CallLogTab.updateTick(dataParcelArrayList);
+        }
     }
 }

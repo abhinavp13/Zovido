@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -129,6 +130,11 @@ public class CallLogTab extends Fragment {
                 } else {
                     cachedCallLogs = new ArrayList<>();
                     cachedCallLogs.addAll(callLogs);
+
+                    /** update ticks if saved logs data is available **/
+                    if(SavedLogTab.savedLogRecyclerViewAdapter != null) {
+                        updateTick(SavedLogTab.savedLogRecyclerViewAdapter.getAllItems());
+                    }
                 }
 
                 if (mAdapter != null) {
@@ -185,6 +191,7 @@ public class CallLogTab extends Fragment {
             intent.putExtra(Constants.userName, callDataObjectParcel.getName() == null ? "Unknown" : callDataObjectParcel.getName());
             intent.putExtra(Constants.agentName, (CallDetails.AGENT_NAME == null || CallDetails.AGENT_NAME.length() == 0)? "Your Name" : CallDetails.AGENT_NAME );
             intent.putExtra(Constants.callDuration, callDataObjectParcel.getCallDuration());
+            intent.putExtra(Constants.position, position);
 
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -202,6 +209,10 @@ public class CallLogTab extends Fragment {
 
         /** Need to save data into Db and update saved logs tab **/
         if(requestCode == Constants.feedbackActivityRequestCode && resultCode == Constants.feedbackActivityRequestCode){
+
+            if(mAdapter != null){
+                mAdapter.updateTick(data.getExtras().getInt(Constants.position));
+            }
 
             DataParcel dataParcel = data.getExtras().getParcelable(Constants.dataPojo);
 
@@ -257,6 +268,35 @@ public class CallLogTab extends Fragment {
                 }
             }
         }
+    }
+
+    /** Update Ticks in all call logs **/
+    public static void updateTick(ArrayList<DataParcel> dataParcelArrayList){
+
+        /** Extract all dates for comparison **/
+        ArrayList<String> dateList = new ArrayList<>();
+        for(DataParcel dataParcel : dataParcelArrayList){
+            if(dataParcel != null){
+                dateList.add(dataParcel.getTimestamp());
+            }
+        }
+
+        /** If we have call logs available update ticks. **/
+        if(cachedCallLogs != null && cachedCallLogs.size() >0){
+            for(int i = 0; i<cachedCallLogs.size(); i++) {
+                CallDataObjectParcel callDataObjectParcel = cachedCallLogs.get(i);
+                if(callDataObjectParcel != null){
+                    if(dateList.indexOf(callDataObjectParcel.getCallDate()) != -1){
+                        callDataObjectParcel.setShowTick(true);
+                    }
+                }
+            }
+
+            if(mAdapter != null){
+                mAdapter.updateAllAtOnce(cachedCallLogs);
+            }
+        }
+
     }
 
 }

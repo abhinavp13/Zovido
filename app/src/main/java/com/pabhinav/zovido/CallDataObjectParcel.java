@@ -18,6 +18,8 @@ public class CallDataObjectParcel implements Parcelable {
 
     private String callDuration;
 
+    private boolean showTick;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,15 +35,6 @@ public class CallDataObjectParcel implements Parcelable {
 
     }
 
-    @Override
-    public int hashCode() {
-        int result = phoneNumber.hashCode();
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + callType.hashCode();
-        result = 31 * result + callDate.hashCode();
-        result = 31 * result + callDuration.hashCode();
-        return result;
-    }
 
     @Override
     public String toString() {
@@ -96,6 +89,14 @@ public class CallDataObjectParcel implements Parcelable {
 
     public void setCallDuration(String callDuration) {
         this.callDuration = callDuration;
+    }
+
+    public boolean isShowTick() {
+        return showTick;
+    }
+
+    public void setShowTick(boolean showTick) {
+        this.showTick = showTick;
     }
 
     /******************************************/
