@@ -162,6 +162,9 @@ public class SavedLogRecyclerViewAdapter extends RecyclerView.Adapter<SavedLogRe
             savedCounterTextView.setText(String.valueOf(mDataSet.size()));
         }
         hideBackgroundToShowNoSavedLogsMssg();
+
+        /** update Ticks **/
+        CallLogTab.updateTick(mDataSet);
     }
 
     public void deleteAll(){
@@ -172,6 +175,9 @@ public class SavedLogRecyclerViewAdapter extends RecyclerView.Adapter<SavedLogRe
             savedCounterTextView.setText(String.valueOf(mDataSet.size()));
         }
         hideBackgroundToShowNoSavedLogsMssg();
+
+        /** update Ticks **/
+        CallLogTab.updateTick(mDataSet);
     }
 
     private void showBackgroundToHideNoSavedLogsMssg(){

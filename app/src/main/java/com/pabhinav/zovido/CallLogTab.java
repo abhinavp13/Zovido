@@ -288,6 +288,8 @@ public class CallLogTab extends Fragment {
                 if(callDataObjectParcel != null){
                     if(dateList.indexOf(callDataObjectParcel.getCallDate()) != -1){
                         callDataObjectParcel.setShowTick(true);
+                    } else {
+                        callDataObjectParcel.setShowTick(false);
                     }
                 }
             }

@@ -36,7 +36,7 @@ import jxl.write.WritableWorkbook;
 
 import static jxl.Workbook.createWorkbook;
 
-public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener, SavedLogTab.OnSavedLogsDataReadFromDBListener {
+public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener, SavedLogTab.OnSavedLogsEventChangeListener {
 
     public static String AGENT_NAME = "";
     private static final int REQUEST_CODE_CREATOR = 2;
@@ -108,6 +108,28 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        findViewById(R.id.saved_item_addition_icon).setVisibility(View.GONE);
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == 0){
+                    findViewById(R.id.saved_item_addition_icon).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.saved_item_addition_icon).setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
 
             }
         });

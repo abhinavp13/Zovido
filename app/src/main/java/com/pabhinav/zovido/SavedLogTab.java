@@ -2,10 +2,7 @@ package com.pabhinav.zovido;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.CallLog;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,10 +21,10 @@ public class SavedLogTab extends Fragment {
     RecyclerView mRecyclerView;
     public static SavedLogRecyclerViewAdapter savedLogRecyclerViewAdapter;
     private MyApplication myApplication;
-    private OnSavedLogsDataReadFromDBListener savedLogsDataReadFromDBListener;
+    private OnSavedLogsEventChangeListener savedLogsDataReadFromDBListener;
 
 
-    interface OnSavedLogsDataReadFromDBListener{
+    interface OnSavedLogsEventChangeListener {
         void onSavedLogsDataReadFromDB(ArrayList<DataParcel> dataParcels);
     }
 
@@ -37,9 +34,9 @@ public class SavedLogTab extends Fragment {
 
         /** Make sure that parent activity implements above interface **/
         try{
-            savedLogsDataReadFromDBListener = (OnSavedLogsDataReadFromDBListener)activity;
+            savedLogsDataReadFromDBListener = (OnSavedLogsEventChangeListener)activity;
         } catch (ClassCastException e){
-            throw new ClassCastException(activity.toString() + " must implement OnSavedLogsDataReadFromDBListener");
+            throw new ClassCastException(activity.toString() + " must implement OnSavedLogsEventChangeListener");
         }
     }
 

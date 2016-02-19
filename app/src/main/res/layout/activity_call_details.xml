@@ -39,6 +39,23 @@
             android:layout_toEndOf="@+id/drawer_toggler" />
 
 
+        <RelativeLayout
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:background="@color/blue_light"
+            android:gravity="center"
+            android:id="@+id/saved_item_addition_icon"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/call_add" />
+
+        </RelativeLayout>
+
+
     </RelativeLayout>
 
 
