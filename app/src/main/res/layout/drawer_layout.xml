@@ -8,8 +8,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="200dp"
+
+        android:layout_height="232dp"
         android:onClick="navigationHeaderClicked"
         android:id="@+id/header_relative_layout">
 
@@ -18,25 +18,64 @@
             android:layout_height="72dp"
             android:background="@mipmap/ic_launcher"
             android:id="@+id/app_icon_white_image_view"
-            android:layout_centerVertical="true"
+            android:layout_above="@+id/agent_name_text_view"
             android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/agent_name_text_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:layout_marginTop="16dp"
             android:textSize="24sp"
             android:padding="4dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginTop="16dp"
             android:text= "Abhinav Puri"
             android:singleLine="true"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:gravity="center"
-            android:layout_below="@+id/app_icon_white_image_view"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/relativeLayout3"
+            android:layout_toStartOf="@+id/imageView7" />
+
+
+        <RelativeLayout
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:onClick="agentNameChangeClicked"
+            android:layout_alignTop="@+id/agent_name_text_view"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/agent_name_text_view"
+            android:id="@+id/imageView7">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:padding="8dp"
+                android:background="@drawable/ic_create_white_24dp"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/relativeLayout3"
+            android:visibility="invisible"
+            android:layout_alignBottom="@+id/agent_name_text_view"
             android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignTop="@+id/agent_name_text_view">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:padding="8dp"
+                android:background="@drawable/ic_create_white_24dp" />
+        </RelativeLayout>
+
 
     </RelativeLayout>
     

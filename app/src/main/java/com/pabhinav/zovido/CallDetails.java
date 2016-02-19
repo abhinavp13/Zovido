@@ -170,6 +170,50 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
     }
 
     @Override
+    public void agentNameChangeClicked(View v) {
+
+        View rootView = getLayoutInflater().inflate(R.layout.new_agent_name, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(CallDetails.this);
+        builder.setView(rootView);
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        final EditText agentEditText = (EditText)rootView.findViewById(R.id.input_agent_name_dialog);
+        rootView.findViewById(R.id.change_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(agentEditText != null && agentEditText.getText() != null && agentEditText.getText().toString().length() >0){
+
+                    AGENT_NAME = agentEditText.getText().toString();
+
+                    /** Write to a file in private mode **/
+                    SharedPreferences sharedPref = getSharedPreferences(Constants.mypreferences, Context.MODE_PRIVATE);
+
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString(Constants.agentName, AGENT_NAME);
+                    editor.apply();
+
+                    TextView agentNameTextView = (TextView) findViewById(R.id.agent_name_text_view);
+                    agentNameTextView.setText(AGENT_NAME);
+
+                } else {
+                    Toast.makeText(CallDetails.this, "Your Name cannot be empty !", Toast.LENGTH_LONG).show();
+                }
+
+                alertDialog.cancel();
+            }
+        });
+
+        rootView.findViewById(R.id.cancel_button_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.cancel();
+            }
+        });
+    }
+
+
+    @Override
     protected void onResume() {
         super.onResume();
 

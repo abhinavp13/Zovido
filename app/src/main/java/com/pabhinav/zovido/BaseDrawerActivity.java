@@ -85,4 +85,6 @@ public abstract class BaseDrawerActivity extends AppCompatActivity {
     public abstract void changeAccountClicked(View v);
 
     public abstract void aboutClicked(View v);
+
+    public abstract void agentNameChangeClicked(View v);
 }

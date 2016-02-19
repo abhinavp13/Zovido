@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:textSize="14sp"
-            android:text = "No Saved Logs To Upload"
+            android:text = "(Click on any recent logs item to get them saved)"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
