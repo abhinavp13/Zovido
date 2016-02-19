@@ -27,7 +27,8 @@
         android:layout_height="56dp"
         android:elevation="20dp"
         android:background="@android:color/white"
-        android:layout_centerInParent="true">
+        android:layout_above="@+id/view4"
+        android:layout_centerHorizontal="true">
 
 
         <TextView
@@ -95,5 +96,12 @@
 
 
     </RelativeLayout>
+
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/view4" />
 
 </RelativeLayout>

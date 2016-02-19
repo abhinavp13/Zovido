@@ -140,6 +140,7 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
                     final String feedback = editText.getText().toString();
                     FirebaseHelper firebaseHelper = new FirebaseHelper(CallDetails.this);
                     firebaseHelper.sendFeedback(feedback);
+                    Toast.makeText(CallDetails.this, "Thanks for your response !", Toast.LENGTH_LONG).show();
                 }
                 alert.cancel();
             }
