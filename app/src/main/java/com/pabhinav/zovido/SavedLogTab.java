@@ -28,7 +28,7 @@ public class SavedLogTab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         /** Inflate root view **/
-        View rootView = inflater.inflate(R.layout.saved_log_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.saved_log_fragment, container, false);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.saved_log_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -43,6 +43,16 @@ public class SavedLogTab extends Fragment {
         asyncTaskForReadingDb.setTaskComplete(new AsyncTaskForReadingDb.TaskComplete() {
             @Override
             public void onTaskComplete(ArrayList<DataParcel> dataParcels) {
+
+                /** Remove loading in saved log fragment **/
+                rootView.findViewById(R.id.loading_in_saved_log).setVisibility(View.GONE);
+                rootView.findViewById(R.id.imageView_spinner_cover_in_saved_log).setVisibility(View.GONE);
+                rootView.findViewById(R.id.spinner_saved_log).setVisibility(View.GONE);
+
+                /** Show Empty saved logs symbol **/
+                rootView.findViewById(R.id.imageView4).setVisibility(View.VISIBLE);
+                rootView.findViewById(R.id.click_on_any_recent_logs).setVisibility(View.VISIBLE);
+
                 if(dataParcels != null){
                     savedLogRecyclerViewAdapter.addAllItem(dataParcels,0);
                 }

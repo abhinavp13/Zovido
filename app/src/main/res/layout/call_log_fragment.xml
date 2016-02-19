@@ -37,6 +37,7 @@
         android:layout_centerHorizontal="true"/>
 
 
+    <!-- Hidden cover only shown if there is no call log in the phone  -->
     <ImageView
         android:id="@+id/spinner_hidden"
         android:layout_width="24dp"

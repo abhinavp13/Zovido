@@ -9,17 +9,57 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        
+        
+        <!-- Loading Symbol -->
+
+        <TextView
+            android:id="@+id/loading_in_saved_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:text = "Loading Your Saved Call Logs"
+            android:layout_below="@+id/imageView_spinner_cover_in_saved_log"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/spinner_image_cover"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/imageView_spinner_cover_in_saved_log" />
+
+
+        <ImageView
+            android:id="@+id/spinner_saved_log"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/spinner"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+        
+        <!-- End here          -->
+
+
+        
+        
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/call_save_black"
             android:id="@+id/imageView4"
-            android:layout_above="@+id/loading_in_saved_call_log"
+            android:visibility="invisible"
+            android:layout_above="@+id/click_on_any_recent_logs"
             android:layout_centerHorizontal="true" />
 
         <TextView
-            android:id="@+id/loading_in_saved_call_log"
+            android:id="@+id/click_on_any_recent_logs"
             android:layout_width="wrap_content"
+            android:visibility="invisible"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:textSize="14sp"
