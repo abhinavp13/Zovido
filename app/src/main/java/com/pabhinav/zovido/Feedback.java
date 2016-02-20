@@ -12,18 +12,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class Feedback extends AppCompatActivity {
+import java.util.ArrayList;
 
-    private String phoneNumber;
-    private String callEndTime;
-    private String callDuration;
-    private String userName;
-    private String agentName;
-    private String callRemarks;
-    private String userType;
-    private String productType;
-    private boolean toggleUserType = false;
-    private boolean toggleProductType = false;
+public class Feedback extends AppCompatActivity {
 
     private View userBackgroundView;
     private TextView existingUserTextView;
@@ -48,57 +39,48 @@ public class Feedback extends AppCompatActivity {
     private TextView inputCallDuration;
     private MyEditText remarksEditText;
     private ScrollView scrollView;
-    private int position;
+
+    /** Important : only supports: String, Integer, boolean,
+     *  to add any new type need to change in FeedbackHelper class **/
+    /** Defines a bundled data item with its class type, token value and default value **/
+    public class BundledDataItemLink {
+
+        Class aClass;
+        Object defaultValue;
+        String token;
+
+        public BundledDataItemLink(String token, Class aClass, Object defaultValue){
+            this.token = token;
+            this.aClass = aClass;
+            this.defaultValue = defaultValue;
+        }
+    }
+
+    ArrayList<BundledDataItemLink> bundledDataItemLinkArrayList;
+    FeedbackHelper feedbackHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
+        /** Helps fetch data from Bundle **/
+        feedbackHelper = new FeedbackHelper(savedInstanceState, getIntent().getExtras());
 
-            /** The 'if' case which should not happen :) **/
-            if(extras == null) {
-                phoneNumber= null;
-                callEndTime = null;
-                callDuration = null;
-                userName = null;
-                agentName = null;
-                userType = null;
-                productType = null;
-                callRemarks = null;
-                toggleUserType = false;
-                toggleProductType = false;
-                position = -1;
+        /** Keep on appending items that can be fetched from bundle **/
+        appendBundleItem(Constants.phoneNumber, String.class, null);
+        appendBundleItem(Constants.callEndTime, String.class, null);
+        appendBundleItem(Constants.callDuration, String.class, null);
+        appendBundleItem(Constants.userName, String.class, null);
+        appendBundleItem(Constants.agentName, String.class, null);
+        appendBundleItem(Constants.productType, String.class, null);
+        appendBundleItem(Constants.userType, String.class, null);
+        appendBundleItem(Constants.callRemarks, String.class, null);
+        appendBundleItem(Constants.toggleProductType, Boolean.class, false);
+        appendBundleItem(Constants.toggleUserType, Boolean.class, false);
+        appendBundleItem(Constants.position, Integer.class, -1);
 
-            } else {
-                phoneNumber= extras.getString(Constants.phoneNumber);
-                callEndTime = extras.getString(Constants.callEndTime);
-                callDuration = extras.getString(Constants.callDuration);
-                userName = extras.getString(Constants.userName);
-                agentName = extras.getString(Constants.agentName);
-                userType = extras.getString(Constants.userType);
-                productType = extras.getString(Constants.productType);
-                callRemarks = extras.getString(Constants.callRemarks);
-                toggleUserType = extras.getBoolean(Constants.toggleUserType);
-                toggleProductType = extras.getBoolean(Constants.toggleProductType);
-                position = extras.getInt(Constants.position);
-            }
-        } else {
-            phoneNumber = (String) savedInstanceState.getSerializable(Constants.phoneNumber);
-            callEndTime = (String) savedInstanceState.getSerializable(Constants.callEndTime);
-            callDuration = (String) savedInstanceState.getSerializable(Constants.callDuration);
-            userName = (String) savedInstanceState.getSerializable(Constants.userName);
-            agentName = (String) savedInstanceState.getSerializable(Constants.agentName);
-            userType = (String) savedInstanceState.getSerializable(Constants.userType);
-            productType = (String) savedInstanceState.getSerializable(Constants.productType);
-            callRemarks = (String) savedInstanceState.getSerializable(Constants.callRemarks);
-            toggleUserType = (boolean) savedInstanceState.getSerializable(Constants.toggleUserType);
-            toggleProductType = (boolean) savedInstanceState.getSerializable(Constants.toggleProductType);
-            position = (int) savedInstanceState.getSerializable(Constants.position);
-        }
-
+        feedbackHelper.fetchBundledData(bundledDataItemLinkArrayList);
 
         /** Need to initialize some views **/
         initializeViews();
@@ -108,7 +90,16 @@ public class Feedback extends AppCompatActivity {
 
     }
 
+    private void appendBundleItem(String token, Class aClass, Object defaultValue){
+
+        if(bundledDataItemLinkArrayList == null){
+            bundledDataItemLinkArrayList = new ArrayList<>();
+        }
+        bundledDataItemLinkArrayList.add(new BundledDataItemLink(token, aClass, defaultValue));
+    }
+
     public void initializeViews(){
+
         userBackgroundView = (View) findViewById(R.id.user_type_background_view);
         newUserTextView = (TextView) findViewById(R.id.textView_new_user);
         existingUserTextView = (TextView) findViewById(R.id.textView_existing_user);
@@ -142,18 +133,9 @@ public class Feedback extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle bundle){
 
-        bundle.putString(Constants.phoneNumber,phoneNumber);
-        bundle.putString(Constants.callEndTime,callEndTime);
-        bundle.putString(Constants.callDuration,callDuration);
-        bundle.putString(Constants.userName,userName);
-        bundle.putString(Constants.agentName,agentName);
-        bundle.putString(Constants.userType,userType);
-        bundle.putString(Constants.productType,productType);
-        bundle.putString(Constants.callRemarks,callRemarks);
-        bundle.putBoolean(Constants.toggleUserType, toggleUserType);
-        bundle.putBoolean(Constants.toggleProductType, toggleProductType);
-        bundle.putBoolean(Constants.needToToggle, true);
+        feedbackHelper.saveBundledItems(bundle);
 
+        bundle.putBoolean(Constants.needToToggle, true);
         super.onSaveInstanceState(bundle);
     }
 
@@ -182,29 +164,29 @@ public class Feedback extends AppCompatActivity {
 
     public void initialActions() {
 
-        if(callRemarks != null && callRemarks.length() >0 ){
-            remarksEditText.setText(callRemarks);
+        if(feedbackHelper.getValueForToken(Constants.callRemarks) != null && ((String)feedbackHelper.getValueForToken(Constants.callRemarks)).length() >0 ){
+            remarksEditText.setText((String)feedbackHelper.getValueForToken(Constants.callRemarks));
         }
 
-        if(userType != null && userType.length() >0 ){
-            inputUserType.setText(userType);
+        if(feedbackHelper.getValueForToken(Constants.userType) != null && ((String)feedbackHelper.getValueForToken(Constants.userType)).length() >0 ){
+            inputUserType.setText((String)feedbackHelper.getValueForToken(Constants.userType));
         }
 
-        if(productType != null && productType.length() >0 ){
-            inputProductType.setText(productType);
+        if(feedbackHelper.getValueForToken(Constants.productType) != null && ((String) feedbackHelper.getValueForToken(Constants.productType)).length() >0 ){
+            inputProductType.setText((String)feedbackHelper.getValueForToken(Constants.productType));
         }
 
-        if (userName == null || userName.length() == 0) {
+        if (feedbackHelper.getValueForToken(Constants.userName) == null || ((String)feedbackHelper.getValueForToken(Constants.userName)).length() == 0) {
             inputName.setHint(Constants.unknown);
         } else {
-            inputName.setHint(userName);
+            inputName.setHint((String)feedbackHelper.getValueForToken(Constants.userName));
         }
 
         /** Can't be null Fields **/
-        inputPhoneNumber.setText(phoneNumber);
-        inputAgentName.setHint(agentName);
-        inputTimeStamp.setText(callEndTime);
-        inputCallDuration.setText(callDuration);
+        inputPhoneNumber.setText((String)feedbackHelper.getValueForToken(Constants.phoneNumber));
+        inputAgentName.setHint((String)feedbackHelper.getValueForToken(Constants.agentName));
+        inputTimeStamp.setText((String)feedbackHelper.getValueForToken(Constants.callEndTime));
+        inputCallDuration.setText((String)feedbackHelper.getValueForToken(Constants.callDuration));
 
         toggleUserTypeViewGroup();
         toggleProductTypeViewGroup();
@@ -272,7 +254,8 @@ public class Feedback extends AppCompatActivity {
 
     private void toggleUserTypeViewGroup(){
 
-        if(!toggleUserType) {
+
+        if(!(boolean)feedbackHelper.getValueForToken(Constants.toggleUserType)) {
             userBackgroundView.setVisibility(View.GONE);
             newUserTextView.setVisibility(View.GONE);
             existingUserTextView.setVisibility(View.GONE);
@@ -292,7 +275,7 @@ public class Feedback extends AppCompatActivity {
             userTypeRotateIcon.setBackground(getResources().getDrawable(R.drawable.blue_arrow_inverted));
         }
 
-        toggleUserType = !toggleUserType;
+        feedbackHelper.updateValueForToken(Constants.toggleUserType,!(boolean)feedbackHelper.getValueForToken(Constants.toggleUserType));
 
         /** Adjust Remarks **/
         dummyViewCoveringBothDropDownToggle();
@@ -300,7 +283,7 @@ public class Feedback extends AppCompatActivity {
 
     private void toggleProductTypeViewGroup(){
 
-        if(!toggleProductType) {
+        if(!(boolean)feedbackHelper.getValueForToken(Constants.toggleProductType)) {
             productBackgroundView.setVisibility(View.GONE);
             newProductTextView.setVisibility(View.GONE);
             existingProductTextView.setVisibility(View.GONE);
@@ -321,7 +304,7 @@ public class Feedback extends AppCompatActivity {
 
         }
 
-        toggleProductType = !toggleProductType;
+        feedbackHelper.updateValueForToken(Constants.toggleProductType, !(boolean)feedbackHelper.getValueForToken(Constants.toggleProductType));
 
         /** Adjust Remarks **/
         dummyViewCoveringBothDropDownToggle();
@@ -329,7 +312,7 @@ public class Feedback extends AppCompatActivity {
 
     private void dummyViewCoveringBothDropDownToggle(){
 
-        if(!toggleProductType || !toggleUserType){
+        if(!(boolean)feedbackHelper.getValueForToken(Constants.toggleProductType) || !(boolean)feedbackHelper.getValueForToken(Constants.toggleUserType)){
             dummyViewCoveringBothDropDown.setVisibility(View.VISIBLE);
         } else {
             dummyViewCoveringBothDropDown.setVisibility(View.GONE);
@@ -357,7 +340,7 @@ public class Feedback extends AppCompatActivity {
 
     private void passActivityResult(){
         Intent intent = new Intent();
-        intent.putExtra(Constants.position, position);
+        intent.putExtra(Constants.position, (int)feedbackHelper.getValueForToken(Constants.position));
         intent.putExtra(Constants.dataPojo, getDataPojo());
         setResult(Constants.feedbackActivityRequestCode, intent);
     }
