@@ -45,7 +45,8 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
     private GoogleApiClient mGoogleApiClient;
     private boolean showDialogOnConnectionComplete;
     private Label[][] labels;
-    private PagerAdapter viewPagerAdapter;
+    private ArrayList<DataParcel> cachedDataForCustomEntries;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,7 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        PagerAdapter viewPagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -121,7 +122,7 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
 
             @Override
             public void onPageSelected(int position) {
-                if(position == 0){
+                if (position == 0) {
                     findViewById(R.id.saved_item_addition_icon).setVisibility(View.GONE);
                 } else {
                     findViewById(R.id.saved_item_addition_icon).setVisibility(View.VISIBLE);
@@ -207,7 +208,7 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
             @Override
             public void onClick(View v) {
 
-                if(agentEditText != null && agentEditText.getText() != null && agentEditText.getText().toString().length() >0){
+                if (agentEditText != null && agentEditText.getText() != null && agentEditText.getText().toString().length() > 0) {
 
                     AGENT_NAME = agentEditText.getText().toString();
 
@@ -478,17 +479,17 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
                 // Get an output stream for the contents.
                 OutputStream outputStream = result.getDriveContents().getOutputStream();
 
-                try{
+                try {
                     WritableWorkbook wb = createWorkbook(outputStream);
                     WritableSheet writableSheet = wb.createSheet("Saved Calls Details", 0);
-                    for(int i = 0; i< SavedLogTab.savedLogRecyclerViewAdapter.getItemCount() + 1; i++){
-                        for (int j = 0; j<8; j++){
+                    for (int i = 0; i < SavedLogTab.savedLogRecyclerViewAdapter.getItemCount() + 1; i++) {
+                        for (int j = 0; j < 8; j++) {
                             writableSheet.addCell(labels[j][i]);
                         }
                     }
                     wb.write();
                     wb.close();
-                }catch(Exception ex) {
+                } catch (Exception ex) {
                     ex.printStackTrace();
                     Toast.makeText(CallDetails.this, "Failed To Create 'xls' File", Toast.LENGTH_LONG).show();
                     return;
@@ -498,7 +499,7 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
                 Date date = new Date(timeInMillis);
                 MetadataChangeSet metadataChangeSet = new MetadataChangeSet.Builder()
                         .setMimeType(MimeTypeMap.getSingleton().getMimeTypeFromExtension(".xls"))
-                        .setTitle("Zovido-"+ date + ".xls").build();
+                        .setTitle("Zovido-" + date + ".xls").build();
 
                 // Create an intent for the file chooser, and start it.
                 IntentSender intentSender = Drive.DriveApi
@@ -522,9 +523,6 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == REQUEST_CODE_CREATOR){
-
-        }
         switch (requestCode) {
             case REQUEST_CODE_CREATOR:
 
@@ -535,6 +533,34 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
                     Toast.makeText(CallDetails.this, "Saved File to Drive. File will get synced.", Toast.LENGTH_LONG).show();
                     askForKeepOrDeleteSavedLogs();
 
+                }
+                break;
+
+            case Constants.feedbackActivityRequestCode :
+
+                DataParcel dataParcel = data.getExtras().getParcelable(Constants.dataPojo);
+                if(dataParcel != null){
+
+                    MyApplication myApplication = (MyApplication) getApplicationContext();
+
+                    /** add to db **/
+                    int id = myApplication.writeToDb(dataParcel);
+                    dataParcel.setId(id);
+
+                    /** There is a custom entry request **/
+                    if(SavedLogTab.savedLogRecyclerViewAdapter != null) {
+                        SavedLogTab.savedLogRecyclerViewAdapter.addItem(dataParcel, 0);
+                        SavedLogTab.savedLogRecyclerViewAdapter.notifyDataSetChanged();
+                    } else {
+
+                        /** Caching data until saved logs appear **/
+                        if(cachedDataForCustomEntries == null) {
+                            cachedDataForCustomEntries = new ArrayList<>();
+                        }
+
+                        /** Add data parcel in cached log **/
+                        cachedDataForCustomEntries.add(dataParcel);
+                    }
                 }
                 break;
         }
@@ -586,5 +612,23 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
         if(dataParcelArrayList != null && dataParcelArrayList.size() >0) {
             CallLogTab.updateTick(dataParcelArrayList);
         }
+
+        /** Custom entries log were cached its time to update **/
+        if(cachedDataForCustomEntries != null){
+            for(DataParcel dataParcel : cachedDataForCustomEntries) {
+                SavedLogTab.savedLogRecyclerViewAdapter.addItem(dataParcel,0);
+            }
+            SavedLogTab.savedLogRecyclerViewAdapter.notifyDataSetChanged();
+            cachedDataForCustomEntries = null;
+        }
+    }
+
+    /** Custom Call Addition button clicked **/
+    public void customCallAdditionClicked(View v){
+
+        /** Call feedback handling activity **/
+        final Intent intent = new Intent(this, Feedback.class);
+        intent.putExtra(Constants.agentName, AGENT_NAME);
+        startActivityForResult(intent, Constants.feedbackActivityRequestCode);
     }
 }

@@ -1,6 +1,7 @@
 package com.pabhinav.zovido;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ public class SavedLogTab extends Fragment {
     public static SavedLogRecyclerViewAdapter savedLogRecyclerViewAdapter;
     private MyApplication myApplication;
     private OnSavedLogsEventChangeListener savedLogsDataReadFromDBListener;
+    private CallDetails attachedActivity;
 
 
     interface OnSavedLogsEventChangeListener {
@@ -31,6 +33,8 @@ public class SavedLogTab extends Fragment {
     @Override
     public void onAttach(Activity activity){
         super.onAttach(activity);
+
+        attachedActivity = (CallDetails)activity;
 
         /** Make sure that parent activity implements above interface **/
         try{
@@ -101,14 +105,8 @@ public class SavedLogTab extends Fragment {
         @Override
         public void onDeleteForItemClicked(int position, View v){
 
-            Log.d("Zovido : ", "Before Delete(SavedLog)");
-            myApplication.printDb();
-
             /** Delete from DB **/
             myApplication.deleteFromDb(savedLogRecyclerViewAdapter.getItem(position));
-
-            Log.d("Zovido : ", "After Delete(SavedLog)");
-            myApplication.printDb();
 
             savedLogRecyclerViewAdapter.deleteItem(position);
         }
@@ -151,23 +149,16 @@ public class SavedLogTab extends Fragment {
                     DataParcel dataParcelItem = dataParcelArrayList.get(i);
                     if(dataParcelItem != null
                             && dataParcelItem.getCallDuration().equals(dataParcel.getCallDuration())
-                            && dataParcelItem.getTimestamp().equals(dataParcel.getTimestamp())){
+                            && dataParcelItem.getTimestamp().equals(dataParcel.getTimestamp())) {
                         dataParcel.setId(dataParcelItem.getId());
-                        dataParcelArrayList.set(i,dataParcel);
+                        dataParcelArrayList.set(i, dataParcel);
                         break;
                     }
                 }
-
                 savedLogRecyclerViewAdapter.notifyDataSetChanged();
-
-                Log.d("Zovido : ", "Before Update(SavedLog)");
-                myApplication.printDb();
 
                 /** update to db **/
                 myApplication.updateToDb(dataParcel);
-
-                Log.d("Zovido : ", "After Update(SavedLog)");
-                myApplication.printDb();
             }
         }
     }

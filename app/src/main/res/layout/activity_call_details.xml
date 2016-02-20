@@ -44,6 +44,7 @@
             android:layout_height="match_parent"
             android:background="@color/blue_light"
             android:gravity="center"
+            android:onClick = "customCallAdditionClicked"
             android:id="@+id/saved_item_addition_icon"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true">
