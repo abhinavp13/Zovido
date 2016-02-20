@@ -28,9 +28,9 @@ public class MyApplication extends Application {
     public void onCreate() {
 
         /** Initialize ACRA error reports sending library **/
-//        ACRA.init(this);
-//        MyReportSender yourSender = new MyReportSender();
-//        ACRA.getErrorReporter().setReportSender(yourSender);
+        ACRA.init(this);
+        MyReportSender yourSender = new MyReportSender();
+        ACRA.getErrorReporter().setReportSender(yourSender);
 
         super.onCreate();
 
