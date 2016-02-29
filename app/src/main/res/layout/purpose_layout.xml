@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myedittext="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/purpose_relative_layout"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <com.pabhinav.zovido.MyEditTextHeading
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="Purpose"
+        android:layout_marginTop="16dp"
+        android:textSize="12sp"
+        android:id="@+id/purpose_heading" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="@android:color/white"
+        android:layout_below="@+id/main_purpose_text_view_underline"
+        android:layout_alignEnd="@+id/main_purpose_text_view_underline" />
+
+    <View
+        android:id="@+id/shadow_purpose_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="-14dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-16dp"
+        android:visibility="visible"
+        android:background="@drawable/drop_down"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/purpose_linear_layout"
+        android:layout_below="@+id/purpose_main_text_view" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:onClick="purposeToggleClicked"
+        android:textColor="@android:color/black"
+        android:text = "Follow-Up"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:id="@+id/purpose_main_text_view"
+        android:layout_below="@+id/purpose_heading"
+        android:layout_alignStart="@+id/purpose_heading"
+        android:layout_toStartOf="@+id/blue_arrow_drop_down_purpose" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/heading_grey"
+        android:layout_below="@+id/purpose_main_text_view"
+        android:layout_alignStart="@+id/purpose_main_text_view"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/main_purpose_text_view_underline" />
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingBottom="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/purpose_linear_layout"
+        android:visibility="visible"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/purpose_main_text_view">
+
+        <TextView
+            android:id="@+id/new_query_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:onClick="purposeMenuItemClicked"
+            android:textColor="@android:color/black"
+            android:text = "New Query"/>
+
+        <TextView
+            android:id="@+id/follow_up_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:onClick="purposeMenuItemClicked"
+            android:paddingBottom="8dp"
+            android:textColor="@android:color/black"
+            android:text = "Follow-Up"/>
+
+        <TextView
+            android:id="@+id/coordination_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:onClick="purposeMenuItemClicked"
+            android:textColor="@android:color/black"
+            android:text = "Coordination"/>
+
+        <com.pabhinav.zovido.MyEditText
+            android:id="@+id/input_purpose_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:background="@null"
+            myedittext:headingText = "@id/purpose_heading"
+            android:hint = "Custom Entry" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@android:color/black"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:onClick="purposeToggleClicked"
+        android:layout_gravity = "center"
+        android:id="@+id/blue_arrow_drop_down_purpose"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/purpose_main_text_view"
+        android:layout_below="@+id/purpose_heading">
+
+        <View
+            android:onClick="purposeToggleClicked"
+            android:id="@+id/purpose_drop_down_icon"
+            android:layout_width="12dp"
+            android:layout_height="8dp"
+            android:background="@drawable/blue_arrow_inverted" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:myedittext="http://schemas.android.com/apk/res-auto"-->
+    <!--android:id="@+id/purpose_relative_layout"-->
+    <!--android:background="@android:color/white"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<com.pabhinav.zovido.MyEditTextHeading-->
+
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="4dp"-->
+        <!--android:text="Purpose"-->
+        <!--android:textSize="12sp"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:id="@+id/purpose_heading" />-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="18sp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:text = "Follow-Up"-->
+        <!--android:singleLine="true"-->
+        <!--android:ellipsize="marquee"-->
+        <!--android:marqueeRepeatLimit="marquee_forever"-->
+        <!--android:id="@+id/purpose_main_text_view"-->
+        <!--android:layout_below="@+id/purpose_heading"-->
+        <!--android:layout_alignStart="@+id/purpose_heading"-->
+        <!--android:layout_toStartOf="@+id/blue_arrow_drop_down_purpose" />-->
+
+    <!--<View-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="@color/heading_grey"-->
+        <!--android:layout_below="@+id/purpose_main_text_view"-->
+        <!--android:layout_alignStart="@+id/purpose_main_text_view"-->
+        <!--android:layout_alignParentEnd="true" />-->
+
+    <!--<View-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginStart="-14dp"-->
+        <!--android:layout_marginEnd="-16dp"-->
+        <!--android:background="@drawable/drop_down"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignBottom="@+id/purpose_linear_layout"-->
+        <!--android:layout_below="@+id/purpose_main_text_view" />-->
+
+    <!--<LinearLayout-->
+        <!--android:orientation="vertical"-->
+        <!--android:paddingBottom="32dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/purpose_linear_layout"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_below="@+id/purpose_main_text_view">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/new_query_text_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="18sp"-->
+            <!--android:paddingTop="4dp"-->
+            <!--android:paddingBottom="8dp"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:text = "New Query"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/follow_up_text_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="18sp"-->
+            <!--android:paddingBottom="8dp"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:text = "Follow-Up"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/coordination_text_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="18sp"-->
+            <!--android:paddingBottom="8dp"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:text = "Coordination"/>-->
+
+
+        <!--<com.pabhinav.zovido.MyEditText-->
+            <!--android:id="@+id/input_purpose_edit_text"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:textSize="18sp"-->
+            <!--android:singleLine="true"-->
+            <!--android:background="@null"-->
+            <!--myedittext:headingText = "@id/purpose_heading"-->
+            <!--android:hint = "Custom Entry" />-->
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:background="@android:color/black"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:visibility="visible" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_gravity = "center"-->
+        <!--android:layout_alignBottom="@+id/purpose_main_text_view"-->
+        <!--android:layout_alignEnd="@+id/purpose_linear_layout"-->
+        <!--android:layout_alignTop="@+id/purpose_main_text_view"-->
+        <!--android:id="@+id/blue_arrow_drop_down_purpose">-->
+
+        <!--<View-->
+            <!--android:id="@+id/purpose_drop_down_icon"-->
+            <!--android:layout_width="12dp"-->
+            <!--android:layout_height="8dp"-->
+            <!--android:background="@drawable/blue_arrow_inverted" />-->
+
+    <!--</RelativeLayout>-->
+
+
+<!--</RelativeLayout>-->

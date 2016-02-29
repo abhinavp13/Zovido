@@ -9,6 +9,7 @@
     android:background="@android:color/white">
 
 
+            <!-- Fake Action Bar -->
             <RelativeLayout
                 android:layout_alignParentTop="true"
                 android:id="@+id/action_bar"
@@ -57,566 +58,87 @@
                     android:layout_height="wrap_content">
 
 
-
-
-
-                    <!-- User Name -->
-
-                    <com.pabhinav.zovido.MyEditTextHeading
-                        android:id="@+id/name_heading"
+                    <!-- Input Name -->
+                    <include
+                        android:id="@+id/input_name_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:text="Name"
-                        android:textSize="12sp"
-                        android:layout_marginTop="10dp" />
-
-                    <View
-                        android:id="@+id/name_underline"
-                        android:layout_width="wrap_content"
-                        android:background="@color/heading_grey"
-                        android:layout_alignBottom="@+id/input_name"
-                        android:layout_alignRight="@+id/input_name"
-                        android:layout_alignEnd="@+id/input_name"
-                        android:layout_height="1dp"
-                        android:layout_alignStart="@+id/name_heading"
-                        android:layout_alignLeft="@+id/name_heading" />
-
-                    <com.pabhinav.zovido.MyEditText
-                        android:id="@+id/input_name"
-                        android:inputType="textPersonName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginStart="3dp"
-                        android:textSize="18sp"
-                        android:singleLine="true"
-                        android:background="@null"
-                        android:layout_below="@+id/name_heading"
-                        myedittext:headingText = "@id/name_heading"
-                        myedittext:underline="@id/name_underline"
-                        android:hint="Cool Name" />
-
-
-
-
+                        layout="@layout/input_name_layout" />
 
 
                     <!-- Phone Number -->
-
-                    <com.pabhinav.zovido.MyEditTextHeading
-                        android:layout_below="@id/name_underline"
-                        android:id="@+id/phone_number_heading"
+                    <include
+                        android:id="@+id/phone_number_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:text="Phone Number"
-                        android:textSize="12sp"
-                        android:layout_marginTop="16dp" />
-
-                    <View
-                        android:id="@+id/phone_no_underline"
-                        android:layout_width="wrap_content"
-                        android:background="@color/heading_grey"
-                        android:layout_alignBottom="@+id/input_phone_no"
-                        android:layout_alignRight="@+id/input_phone_no"
-                        android:layout_alignEnd="@+id/input_phone_no"
-                        android:layout_height="1dp"
-                        android:layout_alignStart="@+id/phone_number_heading"
-                        android:layout_alignLeft="@+id/phone_number_heading" />
-
-                    <com.pabhinav.zovido.MyEditText
-                        android:id="@+id/input_phone_no"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginStart="3dp"
-                        android:inputType="number"
-                        android:maxLength="13"
-                        android:textSize="18sp"
-                        android:singleLine="true"
-                        android:background="@null"
-                        android:layout_below="@+id/phone_number_heading"
-                        myedittext:headingText = "@id/phone_number_heading"
-                        myedittext:underline="@id/phone_no_underline"
-                        android:hint="User mobile number" />
-
-
-
-
+                        android:layout_below="@+id/input_name_layout"
+                        layout="@layout/phone_number_layout" />
 
 
                     <!-- Agent Name (optional) -->
-
-                    <com.pabhinav.zovido.MyEditTextHeading
-                        android:layout_below="@id/input_phone_no"
-                        android:id="@+id/agent_name_heading"
+                    <include
+                        android:id="@+id/agent_name_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:text="Agent Name"
-                        android:textSize="12sp"
-                        android:layout_marginTop="16dp" />
-
-                    <View
-                        android:id="@+id/agent_name_underline"
-                        android:layout_width="wrap_content"
-                        android:background="@color/heading_grey"
-                        android:layout_alignBottom="@+id/input_agent_name"
-                        android:layout_alignRight="@+id/input_agent_name"
-                        android:layout_alignEnd="@+id/input_agent_name"
-                        android:layout_height="1dp"
-                        android:layout_alignStart="@+id/agent_name_heading"
-                        android:layout_alignLeft="@+id/agent_name_heading" />
-
-                    <com.pabhinav.zovido.MyEditText
-                        android:id="@+id/input_agent_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginStart="3dp"
-                        android:inputType="textPersonName"
-                        android:textSize="18sp"
-                        android:singleLine="true"
-                        android:background="@null"
-                        android:layout_below="@+id/agent_name_heading"
-                        myedittext:headingText = "@id/agent_name_heading"
-                        myedittext:underline="@id/agent_name_underline"
-                        android:hint="(optional)" />
+                        android:layout_below="@+id/phone_number_layout"
+                        layout="@layout/agent_name_layout" />
 
 
-
-
-
-
-                    <!-- Call Date and Time  -->
-
-                    <com.pabhinav.zovido.MyEditTextHeading
-                        android:layout_below="@id/input_agent_name"
-                        android:id="@+id/timestamp_heading"
+                    <!-- Call Time -->
+                    <include
+                        android:id="@+id/call_time_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:text="Call Time"
-                        android:textSize="12sp"
-                        android:layout_marginTop="16dp" />
+                        android:layout_below="@+id/agent_name_layout"
+                        layout="@layout/calll_time_layout" />
 
 
-                    <com.pabhinav.zovido.MyEditTextHeading
-                        android:id="@+id/timestamp_duration_heading"
+                    <!-- Call Duration -->
+                    <include
+                        android:id="@+id/call_duration_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Call Duration"
-                        android:textSize="12sp"
-                        android:layout_above="@+id/input_timestamp"
-                        android:layout_toRightOf="@+id/input_timestamp"
-                        android:layout_toEndOf="@+id/input_timestamp" />
+                        android:layout_below="@+id/call_time_layout"
+                        layout="@layout/call_duration_layout" />
 
 
-                    <TextView
-                        android:id="@+id/input_timestamp_date"
+                    <!-- Purpose -->
+                    <include
+                        android:id="@+id/purpose_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textSize="16sp"
-                        android:singleLine="true"
-                        android:layout_marginRight="16dp"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:layout_below="@+id/timestamp_heading"
-                        android:textColor="@android:color/black"
-                        android:text="01-01-70 05:29 IST 2016"
-                        android:layout_alignLeft="@+id/timestamp_heading"
-                        android:layout_alignStart="@+id/timestamp_heading"
-                        android:layout_alignRight="@+id/input_user_type"
-                        android:layout_alignEnd="@+id/input_user_type" />
+                        android:layout_below="@+id/call_duration_layout"
+                        layout="@layout/purpose_layout" />
 
 
-                    <!-- Dummy Balancer Text View -->
-                    <TextView
-                        android:id="@+id/input_timestamp"
+                    <!-- Product -->
+                    <include
+                        android:id="@+id/product_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textSize="16sp"
-                        android:singleLine="true"
-                        android:layout_below="@+id/timestamp_heading"
-                        android:textColor="@android:color/transparent"
-                        android:text="01-01-7878787768768"
-                        android:layout_alignLeft="@+id/timestamp_heading"
-                        android:layout_alignStart="@+id/timestamp_heading" />
+                        android:layout_below="@+id/purpose_layout"
+                        layout="@layout/product_layout" />
 
 
-
-
-
-                    <TextView
-                        android:id="@+id/input_timestamp_duration"
+                    <!-- Sports -->
+                    <include
+                        android:id="@+id/sport_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:singleLine="true"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:text="2000 sec"
-                        android:textColor="@android:color/black"
-                        android:layout_alignTop="@+id/input_timestamp"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_toRightOf="@+id/input_timestamp"
-                        android:layout_toEndOf="@+id/input_timestamp" />
+                        android:layout_below="@+id/product_layout"
+                        layout="@layout/sports_layout" />
 
 
-
-
-
-
-                    <!-- User Type -->
-
-                    <com.pabhinav.zovido.MyEditTextHeading
-                        android:layout_below="@id/input_timestamp"
-                        android:id="@+id/user_type_heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginStart="4dp"
-                        android:text="User Type"
-                        android:textSize="12sp"
-                        android:layout_marginTop="16dp" />
-
-                    <View
-                        android:id="@+id/user_type_underline"
-                        android:layout_width="wrap_content"
-                        android:background="@color/heading_grey"
-                        android:layout_alignBottom="@+id/input_user_type"
-                        android:layout_alignRight="@+id/input_user_type"
-                        android:layout_alignEnd="@+id/input_user_type"
-                        android:layout_height="1dp"
-                        android:layout_alignStart="@+id/user_type_heading"
-                        android:layout_alignLeft="@+id/user_type_heading" />
-
-                    <TextView
-                        android:id="@+id/input_user_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:singleLine="true"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:textSize="18sp"
-                        android:background="@null"
-                        android:layout_below="@+id/user_type_heading"
-                        android:text="Existing User"
-                        android:onClick="userTypeClicked"
-                        android:textColor="@android:color/black"
-                        android:layout_alignRight="@+id/input_timestamp"
-                        android:layout_alignEnd="@+id/input_timestamp"
-                        android:layout_alignLeft="@+id/user_type_heading"
-                        android:layout_alignStart="@+id/user_type_heading" />
-
-                    <RelativeLayout
-                        android:id="@+id/spinner_button_user_type"
-                        android:layout_width="25dp"
-                        android:layout_height="wrap_content"
-                        android:onClick="userTypeClicked"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:layout_gravity = "center"
-                        android:layout_alignRight="@+id/user_type_underline"
-                        android:layout_alignEnd="@+id/user_type_underline"
-                        android:layout_alignTop="@+id/input_user_type"
-                        android:layout_above="@+id/user_type_underline">
-
-                        <View
-                            android:id="@+id/user_type_rotate_icon"
-                            android:layout_width="12dp"
-                            android:layout_height="8dp"
-                            android:onClick="userTypeClicked"
-                            android:background="@drawable/blue_arrow_inverted" />
-
-                    </RelativeLayout>
-
-
-
-                    <!-- Dummy view allowing Remarks to adapt to drop down opening -->
-
-                    <View
-                        android:id="@+id/dummy_view_covering_both_drop_down"
-                        android:layout_width="wrap_content"
-                        android:layout_height="160dp"
-                        android:layout_marginRight="-15dp"
-                        android:layout_marginEnd="-15dp"
-                        android:background="@android:color/white"
-                        android:layout_below="@+id/product_type_underline"
-                        />
-
-
-
-
-
-                    <!-- User Type Drop Down -->
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="160dp"
-                        android:layout_marginLeft="-11dp"
-                        android:layout_marginStart="-11dp"
-                        android:layout_marginTop="-8dp"
-                        android:background="@drawable/drop_down"
-                        android:layout_below="@+id/user_type_underline"
-                        android:layout_toLeftOf="@+id/product_type_underline"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:id="@+id/user_type_background_view" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="New User"
-                        android:singleLine="true"
-                        android:ellipsize="marquee"
-                        android:onClick="newUserClicked"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:textSize="18sp"
-                        android:textColor="@android:color/black"
-                        android:layout_below="@+id/user_type_underline"
-                        android:layout_alignRight="@+id/user_type_underline"
-                        android:layout_alignEnd="@+id/user_type_underline"
-                        android:layout_alignLeft="@+id/user_type_underline"
-                        android:layout_alignStart="@+id/user_type_underline"
-                        android:id="@+id/textView_new_user" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Existing User"
-                        android:onClick="existingUserClicked"
-                        android:singleLine="true"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:textSize="18sp"
-                        android:textColor="@android:color/black"
-                        android:layout_below="@+id/textView_new_user"
-                        android:layout_alignRight="@+id/textView_new_user"
-                        android:layout_alignEnd="@+id/textView_new_user"
-                        android:id="@+id/textView_existing_user"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_alignLeft="@+id/textView_new_user"
-                        android:layout_alignStart="@+id/textView_new_user" />
-
-
-                    <View
-                        android:id="@+id/user_type_dropdown_underline"
-                        android:layout_width="wrap_content"
-                        android:background="@color/heading_grey"
-                        android:layout_alignBottom="@+id/input_user_type_drop_down"
-                        android:layout_alignRight="@+id/input_user_type_drop_down"
-                        android:layout_alignEnd="@+id/input_user_type_drop_down"
-                        android:layout_height="1dp"
-                        android:layout_alignStart="@+id/input_user_type_drop_down"
-                        android:layout_alignLeft="@+id/input_user_type_drop_down" />
-
-                    <com.pabhinav.zovido.MyEditText
-                        android:id="@+id/input_user_type_drop_down"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:textSize="18sp"
-                        android:singleLine="true"
-                        android:layout_marginTop="8dp"
-                        android:background="@null"
-                        myedittext:underline="@id/user_type_dropdown_underline"
-                        android:hint="Custom Entry"
-                        android:layout_below="@+id/textView_existing_user"
-                        android:layout_alignLeft="@+id/textView_existing_user"
-                        android:layout_alignStart="@+id/textView_existing_user"
-                        android:layout_toStartOf="@+id/timestamp_duration_heading"
-                        android:layout_toLeftOf="@+id/timestamp_duration_heading"
-                        android:layout_alignRight="@+id/textView_new_user"
-                        android:layout_alignEnd="@+id/textView_new_user" />
-
-
-
-
-
-
-
-
-                    <!-- Product Type -->
-
-                    <com.pabhinav.zovido.MyEditTextHeading
-                        android:id="@+id/product_type_heading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Product Type"
-                        android:textSize="12sp"
-                        android:layout_alignTop="@+id/user_type_heading"
-                        android:layout_toRightOf="@+id/input_user_type"
-                        android:layout_toEndOf="@+id/input_user_type" />
-
-                    <View
-                        android:id="@+id/product_type_underline"
-                        android:layout_width="wrap_content"
-                        android:background="@color/heading_grey"
-                        android:layout_alignBottom="@+id/input_product_type"
-                        android:layout_alignRight="@+id/input_product_type"
-                        android:layout_alignEnd="@+id/input_product_type"
-                        android:layout_height="1dp"
-                        android:layout_alignStart="@+id/product_type_heading"
-                        android:layout_alignLeft="@+id/product_type_heading" />
-
-                    <TextView
-                        android:id="@+id/input_product_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textSize="18sp"
-                        android:singleLine="true"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:background="@null"
-                        android:textColor="@android:color/black"
-                        android:layout_below="@+id/product_type_heading"
-                        android:text="Fixed Product"
-                        android:onClick="productTypeClicked"
-                        android:layout_alignLeft="@+id/product_type_heading"
-                        android:layout_alignStart="@+id/product_type_heading"
-                        android:layout_alignRight="@+id/input_timestamp_duration"
-                        android:layout_alignEnd="@+id/input_timestamp_duration" />
-
-
-                    <RelativeLayout
-                        android:id="@+id/spinner_button_product_type"
-                        android:layout_width="25dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:onClick="productTypeClicked"
-                        android:background="@android:color/transparent"
-                        android:layout_gravity = "center"
-                        android:layout_alignBottom="@+id/spinner_button_user_type"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignTop="@+id/input_product_type">
-
-                        <View
-                            android:id="@+id/product_type_rotate_icon"
-                            android:layout_width="12dp"
-                            android:layout_height="8dp"
-                            android:onClick="productTypeClicked"
-                            android:background="@drawable/blue_arrow_inverted" />
-
-                    </RelativeLayout>
-
-
-                    <!-- Product Type Drop Down -->
-
-                    <View
-                        android:id="@+id/product_background_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="160dp"
-                        android:layout_marginTop="-8dp"
-                        android:layout_marginRight="-15dp"
-                        android:layout_marginEnd="-15dp"
-                        android:background="@drawable/drop_down"
-                        android:layout_below="@+id/product_type_underline"
-                        android:layout_toRightOf="@+id/user_type_underline"
-                        android:layout_toEndOf="@+id/user_type_underline" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="Fixed Product"
-                        android:onClick="fixedProductClicked"
-                        android:singleLine="true"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:textSize="18sp"
-                        android:textColor="@android:color/black"
-                        android:layout_below="@+id/user_type_underline"
-                        android:layout_alignRight="@+id/product_type_underline"
-                        android:layout_alignEnd="@+id/product_type_underline"
-                        android:layout_alignLeft="@+id/product_type_underline"
-                        android:layout_alignStart="@+id/product_type_underline"
-                        android:id="@+id/textView_fixed_product" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Custom Product"
-                        android:onClick="customProductClicked"
-                        android:singleLine="true"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:textSize="18sp"
-                        android:textColor="@android:color/black"
-                        android:layout_below="@+id/textView_fixed_product"
-                        android:layout_alignRight="@+id/textView_fixed_product"
-                        android:layout_alignEnd="@+id/textView_fixed_product"
-                        android:id="@+id/textView_custom_product"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_alignLeft="@+id/textView_fixed_product"
-                        android:layout_alignStart="@+id/textView_fixed_product" />
-
-
-                    <View
-                        android:id="@+id/product_type_dropdown_underline"
-                        android:layout_width="wrap_content"
-                        android:background="@color/heading_grey"
-                        android:layout_alignBottom="@+id/input_product_type_drop_down"
-                        android:layout_alignRight="@+id/input_product_type_drop_down"
-                        android:layout_alignEnd="@+id/input_product_type_drop_down"
-                        android:layout_height="1dp"
-                        android:layout_alignStart="@+id/input_product_type_drop_down"
-                        android:layout_alignLeft="@+id/input_product_type_drop_down" />
-
-                    <com.pabhinav.zovido.MyEditText
-                        android:id="@+id/input_product_type_drop_down"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:textSize="18sp"
-                        android:singleLine="true"
-                        android:layout_marginTop="8dp"
-                        android:background="@null"
-                        myedittext:underline="@id/product_type_dropdown_underline"
-                        android:hint="Custom Entry"
-                        android:layout_below="@+id/textView_custom_product"
-                        android:layout_alignLeft="@+id/textView_custom_product"
-                        android:layout_alignStart="@+id/textView_custom_product"
-                        android:layout_toStartOf="@+id/timestamp_duration_heading"
-                        android:layout_toLeftOf="@+id/timestamp_duration_heading"
-                        android:layout_alignRight="@+id/textView_fixed_product"
-                        android:layout_alignEnd="@+id/textView_fixed_product" />
-
-
-
+                    <!-- Call Remarks -->
                     <com.pabhinav.zovido.MyEditTextHeading
                         android:id="@+id/remarks_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Remarks"
                         android:textSize="12sp"
-                        android:layout_marginTop="15dp"
-                        android:layout_below="@+id/dummy_view_covering_both_drop_down"
-                        android:layout_alignLeft="@+id/user_type_underline"
-                        android:layout_alignStart="@+id/user_type_underline" />
+                        android:layout_below="@+id/sport_layout"
+                        android:layout_alignLeft="@+id/sport_layout"
+                        android:layout_alignStart="@+id/sport_layout" />
 
                     <View
                         android:layout_width="match_parent"
@@ -649,10 +171,9 @@
                         android:layout_alignLeft="@+id/view"
                         android:layout_alignStart="@+id/view" />
 
-
-
-
                 </RelativeLayout>
+
+
 
             </ScrollView>
 

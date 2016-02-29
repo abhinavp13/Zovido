@@ -11,13 +11,12 @@ public class Constants {
     public static final String userName= "USERNAME";
     public static final String agentName= "AGENTNAME";
     public static final String callRemarks= "CALLREMARKS";
-    public static final String userType= "USERTYPE";
-    public static final String productType= "PRODUCTTYPE";
+    public static final String purpose= "PURPOSE";
+    public static final String product= "PRODUCT";
+    public static final String sport= "SPORT";
     public static final String dataPojo= "DATAPOJO";
-    public static final String needToToggle = "NEED_TO_TOGGLE";
     public static final String unknown = "Unknown";
-    public static final String toggleUserType = "TOGGLEUSERTYPE";
-    public static final String toggleProductType = "TOGGLEPRODUCTTYPE";
+    public static final String customForm = "CUSTOMFORM";
     public static final int urlLoader = 1;
     public static final int feedbackActivityRequestCode = 1001;
     public static final String callData = "CALLDATA";
@@ -35,4 +34,10 @@ public class Constants {
     public static final String feedbackMap = "FEEBACKMAP";
     public static final String acraMap = "ACRAMAP";
     public static final String position = "POSITION";
+    public static final String FILE_SHEET_KEY = "Zovido.fileSheetKey";
+    public static final String WORKSHEET_KEY = "Zovido.workSheetName";
+    public static final int SPREADSHEET_REQUEST = 1002;
+    public static final String FILE_KEY_INTENT_KEY = "FILE_KEY_INTENT_KEY";
+    public static final String WORKSHEET_INTENT_KEY = "WORKSHEET_INTENT_KEY";
+    public static final int notificationId = 465;
 }

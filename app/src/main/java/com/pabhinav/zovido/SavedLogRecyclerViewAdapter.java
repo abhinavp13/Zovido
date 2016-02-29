@@ -49,8 +49,9 @@ public class SavedLogRecyclerViewAdapter extends RecyclerView.Adapter<SavedLogRe
         holder.phoneNumber.setText(mDataSet.get(position).getUserMobileNumber());
         holder.timestamp.setText(mDataSet.get(position).getTimestamp());
         holder.callDuration.setText(mDataSet.get(position).getCallDuration());
-        holder.userType.setText(mDataSet.get(position).getUserType());
-        holder.productType.setText(mDataSet.get(position).getProductType());
+        holder.purpose.setText("Purpose : "+mDataSet.get(position).getPurpose());
+        holder.product.setText("Product : "+mDataSet.get(position).getProduct());
+        holder.sport.setText("Sport : "+mDataSet.get(position).getSport());
     }
 
     @Override
@@ -80,8 +81,9 @@ public class SavedLogRecyclerViewAdapter extends RecyclerView.Adapter<SavedLogRe
         TextView name;
         TextView timestamp;
         TextView phoneNumber;
-        TextView userType;
-        TextView productType;
+        TextView purpose;
+        TextView product;
+        TextView sport;
         TextView callDuration;
         LinearLayout editLinearLayout;
         RelativeLayout deleteRelativeLayout;
@@ -96,8 +98,9 @@ public class SavedLogRecyclerViewAdapter extends RecyclerView.Adapter<SavedLogRe
             name = (TextView) itemView.findViewById(R.id.saved_user_name);
             timestamp = (TextView) itemView.findViewById(R.id.saved_timestamp);
             phoneNumber = (TextView) itemView.findViewById(R.id.saved_phone_number);
-            userType = (TextView) itemView.findViewById(R.id.user_type_text_view);
-            productType = (TextView) itemView.findViewById(R.id.product_type_text_view);
+            purpose = (TextView) itemView.findViewById(R.id.purpose_saved_text_vew);
+            product = (TextView) itemView.findViewById(R.id.product_saved_text_view);
+            sport = (TextView) itemView.findViewById(R.id.sport_saved_text_view);
             callDuration = (TextView) itemView.findViewById(R.id.saved_duration);
             editLinearLayout = (LinearLayout) itemView.findViewById(R.id.edit_linear_layout);
             deleteRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.delete_relative_layout);
@@ -152,6 +155,16 @@ public class SavedLogRecyclerViewAdapter extends RecyclerView.Adapter<SavedLogRe
             savedCounterTextView.setText(String.valueOf(mDataSet.size()));
         }
         showBackgroundToHideNoSavedLogsMssg();
+    }
+
+    public void deleteDataParcel(DataParcel dataParcel){
+
+        for(int j = 0;j <mDataSet.size(); j++){
+            if(mDataSet.get(j).equals(dataParcel)){
+                deleteItem(j);
+                return;
+            }
+        }
     }
 
     public void deleteItem(int index) {

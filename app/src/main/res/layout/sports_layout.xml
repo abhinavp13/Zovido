@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myedittext="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sport_relative_layout"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <com.pabhinav.zovido.MyEditTextHeading
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="Sport"
+        android:textSize="12sp"
+        android:id="@+id/sport_heading" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="@android:color/white"
+        android:layout_below="@+id/main_sport_text_view_underline"
+        android:layout_alignEnd="@+id/main_sport_text_view_underline" />
+
+    <View
+        android:id="@+id/shadow_sport_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="-14dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-16dp"
+        android:visibility="visible"
+        android:background="@drawable/drop_down"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/sport_linear_layout"
+        android:layout_below="@+id/sport_main_text_view" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:onClick="sportToggleClicked"
+        android:textColor="@android:color/black"
+        android:text = "Football"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:id="@+id/sport_main_text_view"
+        android:layout_below="@+id/sport_heading"
+        android:layout_alignStart="@+id/sport_heading"
+        android:layout_toStartOf="@+id/blue_arrow_drop_down_sport" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/heading_grey"
+        android:layout_below="@+id/sport_main_text_view"
+        android:layout_alignStart="@+id/sport_main_text_view"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/main_sport_text_view_underline" />
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingBottom="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sport_linear_layout"
+        android:visibility="visible"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/sport_main_text_view">
+
+        <TextView
+            android:id="@+id/cricket_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:onClick="sportMenuItemClicked"
+            android:paddingBottom="8dp"
+            android:textColor="@android:color/black"
+            android:text = "Cricket"/>
+
+        <TextView
+            android:id="@+id/football_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:onClick="sportMenuItemClicked"
+            android:textColor="@android:color/black"
+            android:text = "Football"/>
+
+        <TextView
+            android:id="@+id/badminton_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:onClick="sportMenuItemClicked"
+            android:textColor="@android:color/black"
+            android:text = "Badminton"/>
+
+        <TextView
+            android:id="@+id/basketball_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:onClick="sportMenuItemClicked"
+            android:textColor="@android:color/black"
+            android:text = "Basketball"/>
+
+        <TextView
+            android:id="@+id/lawn_tennis_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:onClick="sportMenuItemClicked"
+            android:textColor="@android:color/black"
+            android:text = "Lawn Tennis"/>
+
+        <TextView
+            android:id="@+id/volleyball_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:onClick="sportMenuItemClicked"
+            android:textColor="@android:color/black"
+            android:text = "Volleyball"/>
+
+        <TextView
+            android:id="@+id/table_tennis_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:onClick="sportMenuItemClicked"
+            android:textColor="@android:color/black"
+            android:text = "Table Tennis"/>
+
+        <TextView
+            android:id="@+id/multiple_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:onClick="sportMenuItemClicked"
+            android:textColor="@android:color/black"
+            android:text = "Multiple"/>
+
+        <TextView
+            android:id="@+id/Others_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:onClick="sportMenuItemClicked"
+            android:textColor="@android:color/black"
+            android:text = "Others"/>
+
+        <com.pabhinav.zovido.MyEditText
+            android:id="@+id/input_sport_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:background="@null"
+            myedittext:headingText = "@id/sport_heading"
+            android:hint = "Custom Entry" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@android:color/black"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:onClick="sportToggleClicked"
+        android:layout_gravity = "center"
+        android:id="@+id/blue_arrow_drop_down_sport"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/sport_main_text_view"
+        android:layout_below="@+id/sport_heading">
+
+        <View
+            android:onClick="sportToggleClicked"
+            android:id="@+id/sport_drop_down_icon"
+            android:layout_width="12dp"
+            android:layout_height="8dp"
+            android:background="@drawable/blue_arrow_inverted" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

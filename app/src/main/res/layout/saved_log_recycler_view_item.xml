@@ -40,7 +40,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:text="Abhinav Puri"
                 android:id="@+id/saved_user_name"
-                android:layout_alignStart="@+id/user_type_text_view"
+                android:layout_alignStart="@+id/purpose_saved_text_vew"
                 android:layout_toStartOf="@+id/relativeLayout_for_edit" />
 
             <RelativeLayout
@@ -79,26 +79,48 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id ="@+id/user_type_text_view"
+                android:id ="@+id/purpose_saved_text_vew"
                 android:layout_below="@+id/saved_phone_number"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="8dp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:textColor="#444444"
-                android:text = "User Type : Existing"/>
+                android:text = "Purpose : Existing"/>
             
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id ="@+id/product_type_text_view"
-                android:layout_below="@+id/user_type_text_view"
+                android:id ="@+id/product_saved_text_view"
+                android:layout_below="@+id/purpose_saved_text_vew"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="10dp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:layout_marginTop="8dp"
                 android:textColor="#444444"
-                android:text = "Product Type : Custom"
+                android:text = "Product : Custom"
                 />
-            
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id ="@+id/sport_saved_text_view"
+                android:layout_below="@+id/product_saved_text_view"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="10dp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:layout_marginTop="8dp"
+                android:textColor="#444444"
+                android:text = "Sport : Football"
+                />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,7 +132,7 @@
                 android:textSize="10sp"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:text = "Thu 12 Feb 12:12:12 IST 2015"
-                android:layout_below="@+id/product_type_text_view"
+                android:layout_below="@+id/sport_saved_text_view"
                 android:layout_alignLeft="@+id/saved_phone_number"
                 android:layout_alignStart="@+id/saved_phone_number"
                 android:id="@+id/saved_timestamp"

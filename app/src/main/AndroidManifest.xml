@@ -24,6 +24,7 @@
         <screen
             android:screenDensity="xhdpi"
             android:screenSize="small" />
+
         <!-- all normal size screens -->
         <screen
             android:screenDensity="ldpi"
@@ -60,17 +61,22 @@
         <activity
             android:name=".Feedback"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|adjustResize"/>
+            android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".CallDetails"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|adjustResize"/>
+            android:windowSoftInputMode="adjustPan|adjustResize" />
 
         <service
             android:name=".FetchCallLogsIntentService"
             android:exported="false" />
 
-        <receiver android:name=".NetworkChangeReceiver" >
+        <!-- Uploading Service -->
+        <service
+            android:name=".UploadingService"
+            android:exported="false" />
+
+        <receiver android:name=".NetworkChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
@@ -78,15 +84,19 @@
 
         <activity
             android:name=".AboutActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="org.acra.CrashReportDialog"
-            android:theme="@android:style/Theme.Dialog"
-            android:process=":error_report"
-            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SpreadSheetSettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="org.acra.CrashReportDialog"
             android:excludeFromRecents="true"
-            android:finishOnTaskLaunch="true" />
+            android:finishOnTaskLaunch="true"
+            android:launchMode="singleInstance"
+            android:process=":error_report"
+            android:theme="@android:style/Theme.Dialog" />
 
+        <activity android:name=".NotificationViewActivity"/>
     </application>
 
 </manifest>

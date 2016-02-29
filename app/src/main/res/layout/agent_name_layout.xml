@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myedittext="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Agent Name (optional) -->
+
+    <com.pabhinav.zovido.MyEditTextHeading
+        android:layout_below="@id/phone_number_layout"
+        android:id="@+id/agent_name_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="Agent Name"
+        android:textSize="12sp"
+        android:layout_marginTop="16dp" />
+
+    <View
+        android:id="@+id/agent_name_underline"
+        android:layout_width="wrap_content"
+        android:background="@color/heading_grey"
+        android:layout_alignBottom="@+id/input_agent_name"
+        android:layout_alignEnd="@+id/input_agent_name"
+        android:layout_height="1dp"
+        android:layout_alignStart="@+id/agent_name_heading" />
+
+    <com.pabhinav.zovido.MyEditText
+        android:id="@+id/input_agent_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="3dp"
+        android:inputType="textPersonName"
+        android:textSize="18sp"
+        android:singleLine="true"
+        android:background="@null"
+        android:layout_below="@+id/agent_name_heading"
+        myedittext:headingText = "@id/agent_name_heading"
+        myedittext:underline="@id/agent_name_underline"
+        android:hint="(optional)" />
+
+</RelativeLayout>

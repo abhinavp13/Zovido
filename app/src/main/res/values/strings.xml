@@ -5,16 +5,26 @@
     <string name="fixed_product">Fixed Product</string>
     <string name="custom_product">Custom Product</string>
 
-    <string-array name="user_type_array">
-        <item>New User</item>
-        <item>Existing User</item>
-        <item>+ Add Custom Entry</item>
+    <string-array name="purpose">
+        <item>New Query</item>
+        <item>Follow-Up</item>
+        <item>Co-ordination</item>
     </string-array>
 
-    <string-array name="product_type_array">
-        <item>Fixed Product</item>
-        <item>Custom Product</item>
-        <item>+ Add Custom Entry</item>
+    <string-array name="product">
+        <item>Friends/Pick-Up</item>
+        <item>Tournament/League</item>
+        <item>Coaching/Academy</item>
+        <item>Booking/Session</item>
+        <item>Event</item>
+    </string-array>
+
+    <string-array name="sport">
+        <item>Cricket</item>
+        <item>Football</item>
+        <item>Badminton</item>
+        <item>Lawn Tennis</item>
+        <item>Basketball</item>
     </string-array>
 
     <string name="txtCredits"><a href="http://www.google.com">http://www.google.com</a></string>

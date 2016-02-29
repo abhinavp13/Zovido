@@ -180,7 +180,7 @@
             android:textColor="@android:color/white"
             android:gravity="center"
             android:layout_marginLeft="10dp"
-            android:text="Change Drive Account"
+            android:text="Change Sheet Settings"
             android:layout_alignBottom="@+id/imageView"
             android:layout_toEndOf="@+id/imageView"
             android:layout_alignParentTop="true" />

@@ -1,8 +1,10 @@
 package com.pabhinav.zovido;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,7 +26,7 @@ public class SavedLogTab extends Fragment {
     private MyApplication myApplication;
     private OnSavedLogsEventChangeListener savedLogsDataReadFromDBListener;
     private CallDetails attachedActivity;
-
+    private BroadcastReceiver updateUIReceiver;
 
     interface OnSavedLogsEventChangeListener {
         void onSavedLogsDataReadFromDB(ArrayList<DataParcel> dataParcels);
@@ -58,7 +60,7 @@ public class SavedLogTab extends Fragment {
 
         /** Get data from DB **/
         myApplication = (MyApplication)getActivity().getApplicationContext();
-        DatabaseHelper databaseHelper = myApplication.getDatabaseHelper();
+        final DatabaseHelper databaseHelper = myApplication.getDatabaseHelper();
         AsyncTaskForReadingDb asyncTaskForReadingDb = new AsyncTaskForReadingDb(databaseHelper);
         asyncTaskForReadingDb.setTaskComplete(new AsyncTaskForReadingDb.TaskComplete() {
             @Override
@@ -82,6 +84,25 @@ public class SavedLogTab extends Fragment {
             }
         });
         asyncTaskForReadingDb.execute();
+
+
+        /** register ui update recevier **/
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.pabhinav.savedlog.ui.update");
+        updateUIReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if(SavedLogTab.savedLogRecyclerViewAdapter != null) {
+                    DataParcel dataParcel = intent.getExtras().getParcelable(Constants.dataPojo);
+                    if(dataParcel != null) {
+                        SavedLogTab.savedLogRecyclerViewAdapter.deleteDataParcel(dataParcel);
+                    }
+                }
+            }
+        };
+        if(attachedActivity != null){
+            attachedActivity.registerReceiver(updateUIReceiver, intentFilter);
+        }
 
         return rootView;
     }
@@ -123,8 +144,9 @@ public class SavedLogTab extends Fragment {
             intent.putExtra(Constants.userName, dataParcel.getName() == null ? "Unknown" : dataParcel.getName());
             intent.putExtra(Constants.agentName, (CallDetails.AGENT_NAME == null || CallDetails.AGENT_NAME.length() == 0)? "Your Name" : CallDetails.AGENT_NAME );
             intent.putExtra(Constants.callDuration, dataParcel.getCallDuration());
-            intent.putExtra(Constants.userType, dataParcel.getUserType());
-            intent.putExtra(Constants.productType, dataParcel.getProductType());
+            intent.putExtra(Constants.purpose, dataParcel.getPurpose());
+            intent.putExtra(Constants.product, dataParcel.getProduct());
+            intent.putExtra(Constants.sport, dataParcel.getSport());
             intent.putExtra(Constants.callRemarks, dataParcel.getCallRemarks());
 
             startActivityForResult(intent, Constants.feedbackActivityRequestCode);
@@ -161,5 +183,13 @@ public class SavedLogTab extends Fragment {
                 myApplication.updateToDb(dataParcel);
             }
         }
+    }
+
+    @Override
+    public void onDestroy(){
+        if(attachedActivity != null){
+            attachedActivity.unregisterReceiver(updateUIReceiver);
+        }
+        super.onDestroy();
     }
 }

@@ -22,9 +22,11 @@ public class DataParcel implements Parcelable {
 
     private String userMobileNumber;
 
-    private String userType;
+    private String purpose;
 
-    private String productType;
+    private String product;
+
+    private String sport;
 
     private String callRemarks;
 
@@ -37,10 +39,25 @@ public class DataParcel implements Parcelable {
                 ", timestamp='" + timestamp + '\'' +
                 ", callDuration='" + callDuration + '\'' +
                 ", userMobileNumber='" + userMobileNumber + '\'' +
-                ", userType='" + userType + '\'' +
-                ", productType='" + productType + '\'' +
+                ", purpose='" + purpose + '\'' +
+                ", product='" + product + '\'' +
+                ", sport='" + sport + '\'' +
                 ", callRemarks='" + callRemarks + '\'' +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (agentName != null ? agentName.hashCode() : 0);
+        result = 31 * result + (timestamp != null ? timestamp.hashCode() : 0);
+        result = 31 * result + (callDuration != null ? callDuration.hashCode() : 0);
+        result = 31 * result + (userMobileNumber != null ? userMobileNumber.hashCode() : 0);
+        result = 31 * result + (purpose != null ? purpose.hashCode() : 0);
+        result = 31 * result + (product != null ? product.hashCode() : 0);
+        result = 31 * result + (sport != null ? sport.hashCode() : 0);
+        result = 31 * result + (callRemarks != null ? callRemarks.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -48,19 +65,22 @@ public class DataParcel implements Parcelable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DataParcel pojo = (DataParcel) o;
+        DataParcel that = (DataParcel) o;
 
-        if (!name.equals(pojo.name)) return false;
-        if (!agentName.equals(pojo.agentName)) return false;
-        if (!timestamp.equals(pojo.timestamp)) return false;
-        if (!callDuration.equals(pojo.callDuration)) return false;
-        if (!userMobileNumber.equals(pojo.userMobileNumber)) return false;
-        if (!userType.equals(pojo.userType)) return false;
-        if (!productType.equals(pojo.productType)) return false;
-        return !(callRemarks != null ? !callRemarks.equals(pojo.callRemarks) : pojo.callRemarks != null);
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (agentName != null ? !agentName.equals(that.agentName) : that.agentName != null)
+            return false;
+        if (timestamp != null ? !timestamp.equals(that.timestamp) : that.timestamp != null)
+            return false;
+        if (callDuration != null ? !callDuration.equals(that.callDuration) : that.callDuration != null)
+            return false;
+        if (userMobileNumber != null ? !userMobileNumber.equals(that.userMobileNumber) : that.userMobileNumber != null)
+            return false;
+        if (purpose != null ? !purpose.equals(that.purpose) : that.purpose != null) return false;
+        if (product != null ? !product.equals(that.product) : that.product != null) return false;
+        if (sport != null ? !sport.equals(that.sport) : that.sport != null) return false;
+        return !(callRemarks != null ? !callRemarks.equals(that.callRemarks) : that.callRemarks != null);
     }
-
-
 
     /*************************************/
     /********** Getters/setters **********/
@@ -106,22 +126,6 @@ public class DataParcel implements Parcelable {
         this.userMobileNumber = userMobileNumber;
     }
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    public String getProductType() {
-        return productType;
-    }
-
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
-
     public String getCallRemarks() {
         return callRemarks;
     }
@@ -136,6 +140,30 @@ public class DataParcel implements Parcelable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
+    public String getSport() {
+        return sport;
+    }
+
+    public void setSport(String sport) {
+        this.sport = sport;
     }
 
 
@@ -156,8 +184,9 @@ public class DataParcel implements Parcelable {
         out.writeString(timestamp);
         out.writeString(callDuration);
         out.writeString(userMobileNumber);
-        out.writeString(userType);
-        out.writeString(productType);
+        out.writeString(purpose);
+        out.writeString(product);
+        out.writeString(sport);
         out.writeString(callRemarks);
     }
 
@@ -169,8 +198,9 @@ public class DataParcel implements Parcelable {
         dataParcel.setTimestamp(in.readString());
         dataParcel.setCallDuration(in.readString());
         dataParcel.setUserMobileNumber(in.readString());
-        dataParcel.setUserType(in.readString());
-        dataParcel.setProductType(in.readString());
+        dataParcel.setPurpose(in.readString());
+        dataParcel.setProduct(in.readString());
+        dataParcel.setSport(in.readString());
         dataParcel.setCallRemarks(in.readString());
 
         return dataParcel;

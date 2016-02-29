@@ -173,5 +173,38 @@
 
 
 
+    <RelativeLayout
+        android:id="@+id/initializing_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rect_back"
+        android:visibility="gone"
+        android:elevation="12dp"
+        android:gravity="center">
+
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            android:padding="20dp"
+            android:layout_marginStart="8dp"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:padding="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "Preparing To Upload . . ."
+            android:textColor="@android:color/white"
+            android:layout_toEndOf="@+id/progressBar" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

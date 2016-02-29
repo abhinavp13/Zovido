@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:id="@+id/action_bar"
+        android:background="@color/blue_light"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_marginLeft="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginStart="32dp"
+            android:textColor="@android:color/white"
+            android:text = "Zovido"
+            android:layout_centerVertical="true" />
+
+
+    </RelativeLayout>
+
+
+    <!-- Shadow -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_below="@+id/action_bar"
+        android:background="@drawable/shadow_background" />
+
+</RelativeLayout>
+

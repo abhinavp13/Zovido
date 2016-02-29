@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.pabhinav.zovido.SpreadSheetSettingsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/blue_light"
+        android:layout_weight="0.7">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:id="@+id/fake_action_bar_spreadsheet">
+
+                <RelativeLayout
+                    android:onClick="backClicked"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:id="@+id/cover_for_back_arrow_spreadsheet">
+
+                    <View
+                        android:onClick="backClicked"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:gravity="center"
+                        android:background="@drawable/ic_arrow_back_white_24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/white"
+                    android:text = "Settings"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/cover_for_back_arrow_spreadsheet" />
+
+
+            </RelativeLayout>
+
+
+
+            <!-- Sheet File Key -->
+
+            <TextView
+                android:id="@+id/sheet_file_key_heading"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:textColor="@android:color/white"
+                android:text="Sheet File Key"
+                android:textSize="14sp"
+                android:layout_below="@+id/fake_action_bar_spreadsheet"
+                 />
+
+            <View
+                android:id="@+id/sheet_file_key_underline"
+                android:layout_width="wrap_content"
+                android:background="@android:color/white"
+                android:layout_alignBottom="@+id/input_sheet_file_key"
+                android:layout_alignEnd="@+id/input_sheet_file_key"
+                android:layout_height="1dp"
+                android:layout_alignStart="@+id/sheet_file_key_heading" />
+
+            <EditText
+                android:id="@+id/input_sheet_file_key"
+                android:layout_marginEnd="16dp"
+                android:inputType="textPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@android:color/white"
+                android:hint="Your SpreadSheet File Key"
+                android:textSize="18sp"
+                android:singleLine="true"
+                android:layout_marginBottom="8dp"
+                android:background="@null"
+                android:layout_below="@+id/sheet_file_key_heading"
+                android:layout_alignStart="@+id/sheet_file_key_heading" />
+
+
+
+            <!-- WorkSheet Name -->
+
+            <TextView
+                android:id="@+id/worksheet_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="WorkSheet Name"
+                android:textSize="14sp"
+                android:layout_centerVertical="true"
+                android:layout_alignStart="@+id/sheet_file_key_underline" />
+
+            <View
+                android:id="@+id/worksheet_underline"
+                android:layout_width="wrap_content"
+                android:background="@android:color/white"
+                android:layout_alignBottom="@+id/input_worksheet"
+                android:layout_alignEnd="@+id/input_worksheet"
+                android:layout_height="1dp"
+                android:layout_alignStart="@+id/worksheet_heading" />
+
+            <EditText
+                android:id="@+id/input_worksheet"
+                android:layout_marginEnd="16dp"
+                android:inputType="textPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@android:color/white"
+                android:hint="Database WorkSheet Name"
+                android:textSize="18sp"
+                android:singleLine="true"
+                android:layout_marginBottom="8dp"
+                android:background="@null"
+                android:layout_below="@+id/worksheet_heading"
+                android:layout_alignStart="@+id/worksheet_heading" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:padding="20dp"
+                android:onClick="saveSettingsClicked"
+                android:textColor="@android:color/white"
+                android:text="Save Settings"
+                android:layout_below="@+id/input_worksheet"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/textView14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:padding="20dp"
+                android:onClick="revertSettingsClicked"
+                android:textColor="@android:color/white"
+                android:text="Revert Settings"
+                android:layout_alignTop="@+id/textView14"
+                android:layout_toStartOf="@+id/textView14" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        android:layout_weight="0.3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_margin="16dp"
+            android:textSize="20sp"
+            android:text = "Confused What To Fill Above ?"
+            android:id="@+id/textView13" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/heading_grey_dark"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:textSize="16sp"
+            android:text="It is important that your Google Spreadsheet is properly configured with Zovido."
+            android:layout_below="@+id/textView13"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#eeeeee"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:paddingStart="8dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:textSize="16sp"
+                android:textColor="@color/heading_grey_dark"
+                android:text = "Don't know how to configure ?"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:background="@color/heading_grey_dark" />
+
+            <TextView
+                android:onClick="knowMoreClicked"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:paddingStart="8dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:textColor="@color/blue_light"
+                android:text = "Know More"/>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

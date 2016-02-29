@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myedittext="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Call Time -->
+
+    <com.pabhinav.zovido.MyEditTextHeading
+        android:id="@+id/call_time_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="Call Time"
+        android:textSize="12sp"
+        android:layout_marginTop="16dp" />
+
+    <View
+        android:id="@+id/call_time_underline"
+        android:layout_width="wrap_content"
+        android:background="@color/heading_grey"
+        android:layout_alignBottom="@+id/input_call_time"
+        android:layout_alignEnd="@+id/input_call_time"
+        android:layout_height="1dp"
+        android:visibility="visible"
+        android:layout_alignStart="@+id/call_time_heading" />
+
+    <com.pabhinav.zovido.MyEditText
+        android:id="@+id/input_call_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="3dp"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        android:singleLine="true"
+        android:background="@null"
+        android:layout_below="@+id/call_time_heading"
+        myedittext:headingText = "@id/call_time_heading"
+        myedittext:underline="@id/call_time_underline"
+        android:text = "Thu Feb 18 02:05:29 IST 2016"
+        android:hint="Interaction Date And Time"/>
+
+    
+    
+</RelativeLayout>

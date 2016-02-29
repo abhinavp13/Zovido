@@ -1,0 +1,81 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:id="@+id/main_nofication_status_view"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/imagenotileft"
+        android:layout_marginStart="8dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@mipmap/ic_launcher"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <ProgressBar
+        android:id="@+id/firstBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:visibility="visible"
+        android:layout_marginTop="6dp"
+        android:progressDrawable="@drawable/blue_progress"
+        android:progress="50"
+        android:layout_below="@+id/textView15"
+        android:layout_alignStart="@+id/textView15" />
+
+
+    <TextView
+        android:id="@+id/hint_below_first_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="12sp"
+        android:paddingBottom="8dp"
+        android:text = "Uploading Failed : Timeout"
+        android:layout_marginTop="4dp"
+        android:layout_below="@+id/firstBar"
+        android:layout_alignStart="@+id/firstBar"
+        android:layout_toStartOf="@+id/textView16" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="Upload To SpreadSheet"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imagenotileft"
+        android:id="@+id/textView15" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text = "Dismiss"
+        android:visibility="gone"
+        android:textSize="12sp"
+        android:padding="8dp"
+        android:layout_alignEnd="@+id/textView15"
+        android:layout_below="@+id/firstBar"
+        android:id="@+id/textView16" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_light"
+        android:text = "Show More"
+        android:layout_marginTop="4dp"
+        android:visibility="visible"
+        android:textSize="12sp"
+        android:paddingBottom="8dp"
+        android:layout_alignEnd="@+id/textView15"
+        android:layout_below="@+id/firstBar"
+        android:id="@+id/textView17" />
+
+</RelativeLayout>

@@ -6,6 +6,7 @@
 
     <color name="item_pressed">#7090d7</color>
     <color name="blue_light">#3361C7</color>
+    <color name="transparent_blue_light">#223361c7</color>
     <color name="blue">#1F3A77</color>
     <color name="hint_grey">#CCCCCC</color>
     <color name="heading_grey">#808080</color>

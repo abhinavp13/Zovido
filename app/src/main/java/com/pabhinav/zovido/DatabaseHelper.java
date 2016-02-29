@@ -28,8 +28,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_AG_NAME = "agent_name";
     private static final String KEY_TIMESTAMP = "timestamp";
     private static final String KEY_DURATION = "duration";
-    private static final String KEY_USR_TYPE = "user_type";
-    private static final String KEY_PRT_TYPE = "product_type";
+    private static final String KEY_PRP = "purpose";
+    private static final String KEY_PRT = "product";
+    private static final String KEY_SPT = "sport";
     private static final String KEY_REMARKS = "call_remarks";
 
     public DatabaseHelper(Context context) {
@@ -46,8 +47,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + KEY_AG_NAME + " TEXT,"
                 + KEY_TIMESTAMP + " TEXT,"
                 + KEY_DURATION + " TEXT,"
-                + KEY_USR_TYPE + " TEXT,"
-                + KEY_PRT_TYPE + " TEXT,"
+                + KEY_PRP + " TEXT,"
+                + KEY_PRT + " TEXT,"
+                + KEY_SPT + " TEXT,"
                 + KEY_REMARKS + " TEXT"
                 + ")";
         db.execSQL(CREATE_DataParcels_TABLE);
@@ -79,8 +81,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_AG_NAME , dataParcel.getAgentName());
         values.put(KEY_TIMESTAMP , dataParcel.getTimestamp());
         values.put(KEY_DURATION ,dataParcel.getCallDuration());
-        values.put(KEY_USR_TYPE , dataParcel.getUserType());
-        values.put(KEY_PRT_TYPE, dataParcel.getProductType());
+        values.put(KEY_PRP , dataParcel.getPurpose());
+        values.put(KEY_PRT , dataParcel.getProduct());
+        values.put(KEY_SPT, dataParcel.getSport());
         values.put(KEY_REMARKS, dataParcel.getCallRemarks());
 
         // Inserting Row
@@ -113,9 +116,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 dataParcel.setAgentName(cursor.getString(3));
                 dataParcel.setTimestamp(cursor.getString(4));
                 dataParcel.setCallDuration(cursor.getString(5));
-                dataParcel.setUserType(cursor.getString(6));
-                dataParcel.setProductType(cursor.getString(7));
-                dataParcel.setCallRemarks(cursor.getString(8));
+                dataParcel.setPurpose(cursor.getString(6));
+                dataParcel.setProduct(cursor.getString(7));
+                dataParcel.setSport(cursor.getString(8));
+                dataParcel.setCallRemarks(cursor.getString(9));
                 
                 // Adding contact to list
                 contactList.add(dataParcel);
@@ -127,7 +131,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return contactList;
     }
-
 
     // Getting All DataParcels
     public void printWholeDatabase() {
@@ -148,9 +151,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 dataParcel.setAgentName(cursor.getString(3));
                 dataParcel.setTimestamp(cursor.getString(4));
                 dataParcel.setCallDuration(cursor.getString(5));
-                dataParcel.setUserType(cursor.getString(6));
-                dataParcel.setProductType(cursor.getString(7));
-                dataParcel.setCallRemarks(cursor.getString(8));
+                dataParcel.setPurpose(cursor.getString(6));
+                dataParcel.setProduct(cursor.getString(7));
+                dataParcel.setSport(cursor.getString(8));
+                dataParcel.setCallRemarks(cursor.getString(9));
 
                 Log.d("Zovido : DbItem : ", dataParcel.toString());
 
@@ -158,9 +162,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
     }
-
-
-
 
     // Updating single contact
     public int updateDataParcel(DataParcel dataParcel) {
@@ -173,8 +174,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_AG_NAME , dataParcel.getAgentName());
         values.put(KEY_TIMESTAMP , dataParcel.getTimestamp());
         values.put(KEY_DURATION ,dataParcel.getCallDuration());
-        values.put(KEY_USR_TYPE , dataParcel.getUserType());
-        values.put(KEY_PRT_TYPE, dataParcel.getProductType());
+        values.put(KEY_PRP , dataParcel.getPurpose());
+        values.put(KEY_PRT, dataParcel.getProduct());
+        values.put(KEY_SPT, dataParcel.getSport());
         values.put(KEY_REMARKS, dataParcel.getCallRemarks());
 
 

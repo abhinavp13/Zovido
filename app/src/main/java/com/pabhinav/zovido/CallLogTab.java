@@ -70,7 +70,7 @@ public class CallLogTab extends Fragment {
         registerAndStartService();
 
         /**
-         * This is added becoz CallDetailsReceiver can be called
+         * This is added because CallDetailsReceiver can be called
          * before even adapter has been loaded, so in order to
          * have consistency, we update on every onResume. **/
         updateAdapterIfDataAvailable();
@@ -299,6 +299,23 @@ public class CallLogTab extends Fragment {
             }
         }
 
+    }
+
+    /** Clear All ticks **/
+    public static void clearTicks(){
+
+        if(cachedCallLogs != null && cachedCallLogs.size() >0){
+            for(int i = 0; i<cachedCallLogs.size(); i++) {
+                CallDataObjectParcel callDataObjectParcel = cachedCallLogs.get(i);
+                if(callDataObjectParcel != null){
+                        callDataObjectParcel.setShowTick(false);
+                }
+            }
+
+            if(mAdapter != null){
+                mAdapter.updateAllAtOnce(cachedCallLogs);
+            }
+        }
     }
 
 }

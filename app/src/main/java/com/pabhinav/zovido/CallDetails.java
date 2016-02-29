@@ -1,32 +1,29 @@
 package com.pabhinav.zovido;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.EditText;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.drive.Drive;
-import com.google.android.gms.drive.DriveApi;
-import com.google.android.gms.drive.MetadataChangeSet;
+import com.google.gdata.util.ServiceException;
 
 import java.io.File;
-import java.io.OutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,15 +33,10 @@ import jxl.write.WritableWorkbook;
 
 import static jxl.Workbook.createWorkbook;
 
-public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener, SavedLogTab.OnSavedLogsEventChangeListener {
+public class CallDetails extends BaseDrawerActivity implements SavedLogTab.OnSavedLogsEventChangeListener {
 
     public static String AGENT_NAME = "";
-    private static final int REQUEST_CODE_CREATOR = 2;
-    private static final int REQUEST_CODE_RESOLUTION = 3;
     private boolean toggleUpload;
-    private GoogleApiClient mGoogleApiClient;
-    private boolean showDialogOnConnectionComplete;
-    private Label[][] labels;
     private ArrayList<DataParcel> cachedDataForCustomEntries;
 
 
@@ -182,14 +174,6 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
     }
 
     @Override
-    public void changeAccountClicked(View v) {
-
-        /** Need to initialize google instance synchronously **/
-        initializeGoogleApiClient();
-        mGoogleApiClient.clearDefaultAccountAndReconnect();
-    }
-
-    @Override
     public void aboutClicked(View v) {
         Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
@@ -238,47 +222,8 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
         });
     }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        /** Need to initialize google instance synchronously **/
-        initializeGoogleApiClient();
-
-        // Connect the client.
-        mGoogleApiClient.connect();
-
-        showDialogOnConnectionComplete = false;
-    }
-
-    /** Only one instance of google api client must be created **/
-    private synchronized void initializeGoogleApiClient(){
-
-        if (mGoogleApiClient == null) {
-            // Create the API client and bind it to an instance variable.
-            // We use this instance as the callback for connection and connection
-            // failures.
-            // Since no account name is passed, the user is prompted to choose.
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                    .addApi(Drive.API)
-                    .addScope(Drive.SCOPE_FILE)
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .build();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        if (mGoogleApiClient != null) {
-            mGoogleApiClient.disconnect();
-        }
-        super.onPause();
-    }
-
     /** Upload fab clicked **/
-    public void uploadClicked(View v){
+    public void uploadClicked(View v) throws MalformedURLException, IOException, ServiceException {
 
         SavedLogRecyclerViewAdapter savedLogRecyclerViewAdapter = SavedLogTab.savedLogRecyclerViewAdapter;
         if(savedLogRecyclerViewAdapter != null && savedLogRecyclerViewAdapter.getItemCount() == 0){
@@ -332,7 +277,7 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
                     WritableWorkbook wb = createWorkbook(file);
                     WritableSheet writableSheet = wb.createSheet("Saved Calls Details", 0);
                     for(int i = 0; i< SavedLogTab.savedLogRecyclerViewAdapter.getItemCount() + 1; i++){
-                        for (int j = 0; j<8; j++){
+                        for (int j = 0; j<9; j++){
                             writableSheet.addCell(finalLabels[j][i]);
                         }
                     }
@@ -363,37 +308,19 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
 
         toggleFabMenuitems();
 
-        /** Create Excel data **/
-        CreateExcelCellFromDataParcel createExcelCellFromDataParcel = new CreateExcelCellFromDataParcel(SavedLogTab.savedLogRecyclerViewAdapter.getAllItems());
-        try {
-            labels = createExcelCellFromDataParcel.createExcel();
-        } catch (Exception e){
-            /** Could not create excel **/
-            Toast.makeText(CallDetails.this, "Operation not possible", Toast.LENGTH_LONG).show();
-            return;
-        }
+        AsyncTaskForListFeedInSpreadsheet asyncTaskForListFeedInSpreadsheet = new AsyncTaskForListFeedInSpreadsheet(
+                this,
+                getWorkSheetName(),
+                getFileSheetKey(),
+                getGoogleCredential(),
+                SavedLogTab.savedLogRecyclerViewAdapter.getAllItems()
+        );
+        asyncTaskForListFeedInSpreadsheet.execute();
 
-        /** Chose google account and drive folder to export **/
-        if(mGoogleApiClient.isConnected()){
-            saveFileToDrive(labels);
 
-        } else if(mGoogleApiClient.isConnecting()){
-
-            Toast.makeText(CallDetails.this, "Connecting to Google Drive", Toast.LENGTH_LONG).show();
-
-            /** Show dialog on connection complete **/
-            showDialogOnConnectionComplete = true;
-
-        } else {
-
-            Toast.makeText(CallDetails.this, "Connecting to Google Drive", Toast.LENGTH_LONG).show();
-
-            /** Try to connect again, and show dialog on connection complete **/
-            mGoogleApiClient.connect();
-
-            /** Show dialog on connection complete **/
-            showDialogOnConnectionComplete = true;
-        }
+        /** Show initialization effect **/
+        findViewById(R.id.initializing_progress_bar).setVisibility(View.VISIBLE);
+        findViewById(R.id.fake_background_effect).setVisibility(View.VISIBLE);
     }
 
     /** Open/close fab menu **/
@@ -426,143 +353,36 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
         toggleUpload = !toggleUpload;
     }
 
-
-    @Override
-    public void onConnected(Bundle bundle) {
-
-        if(showDialogOnConnectionComplete){
-            saveFileToDrive(labels);
-            showDialogOnConnectionComplete = false;
-        }
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {}
-
-    @Override
-    public void onConnectionFailed(ConnectionResult result) {
-
-        // Called whenever the API client fails to connect.
-        Log.i("Zovido : ", "GoogleApiClient connection failed: " + result.toString());
-        if (!result.hasResolution()) {
-            // show the localized error dialog.
-            GoogleApiAvailability.getInstance().getErrorDialog(this, result.getErrorCode(), 0).show();
-            return;
-        }
-        // The failure has a resolution. Resolve it.
-        // Called typically when the app is not yet authorized, and an
-        // authorization
-        // dialog is displayed to the user.
-        try {
-            result.startResolutionForResult(this, REQUEST_CODE_RESOLUTION);
-        } catch (IntentSender.SendIntentException e) {
-            Log.e("Zovido : ", "Exception while starting resolution activity", e);
-        }
-    }
-
-    /** Save to Drive **/
-    private void saveFileToDrive(final Label[][] labels){
-
-        Drive.DriveApi.newDriveContents(mGoogleApiClient).setResultCallback(new ResultCallback<DriveApi.DriveContentsResult>() {
-
-            @Override
-            public void onResult(DriveApi.DriveContentsResult result) {
-                // If the operation was not successful, we cannot do anything
-                // and must
-                // fail.
-                if (!result.getStatus().isSuccess()) {
-                    Toast.makeText(CallDetails.this, "Failed To Connect To Google Drive", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                // Get an output stream for the contents.
-                OutputStream outputStream = result.getDriveContents().getOutputStream();
-
-                try {
-                    WritableWorkbook wb = createWorkbook(outputStream);
-                    WritableSheet writableSheet = wb.createSheet("Saved Calls Details", 0);
-                    for (int i = 0; i < SavedLogTab.savedLogRecyclerViewAdapter.getItemCount() + 1; i++) {
-                        for (int j = 0; j < 8; j++) {
-                            writableSheet.addCell(labels[j][i]);
-                        }
-                    }
-                    wb.write();
-                    wb.close();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    Toast.makeText(CallDetails.this, "Failed To Create 'xls' File", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                long timeInMillis = System.currentTimeMillis();
-                Date date = new Date(timeInMillis);
-                MetadataChangeSet metadataChangeSet = new MetadataChangeSet.Builder()
-                        .setMimeType(MimeTypeMap.getSingleton().getMimeTypeFromExtension(".xls"))
-                        .setTitle("Zovido-" + date + ".xls").build();
-
-                // Create an intent for the file chooser, and start it.
-                IntentSender intentSender = Drive.DriveApi
-                        .newCreateFileActivityBuilder()
-                        .setInitialMetadata(metadataChangeSet)
-                        .setInitialDriveContents(result.getDriveContents())
-                        .build(mGoogleApiClient);
-                try {
-                    startIntentSenderForResult(intentSender, REQUEST_CODE_CREATOR, null, 0, 0, 0);
-                } catch (IntentSender.SendIntentException e) {
-                    e.printStackTrace();
-                    Toast.makeText(CallDetails.this, "Failed To Initiate Google Drive File Creator", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-    }
-
-
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        switch (requestCode) {
-            case REQUEST_CODE_CREATOR:
+        if(requestCode == Constants.feedbackActivityRequestCode && resultCode == Constants.feedbackActivityRequestCode ) {
 
-                // Called after a file is saved to Drive.
-                if (resultCode == RESULT_OK) {
+            DataParcel dataParcel = data.getExtras().getParcelable(Constants.dataPojo);
+            if(dataParcel != null){
 
-                    /** Successfully Saved to Drive **/
-                    Toast.makeText(CallDetails.this, "Saved File to Drive. File will get synced.", Toast.LENGTH_LONG).show();
-                    askForKeepOrDeleteSavedLogs();
+                MyApplication myApplication = (MyApplication) getApplicationContext();
 
-                }
-                break;
+                /** add to db **/
+                int id = myApplication.writeToDb(dataParcel);
+                dataParcel.setId(id);
 
-            case Constants.feedbackActivityRequestCode :
+                /** There is a custom entry request **/
+                if(SavedLogTab.savedLogRecyclerViewAdapter != null) {
+                    SavedLogTab.savedLogRecyclerViewAdapter.addItem(dataParcel, 0);
+                    SavedLogTab.savedLogRecyclerViewAdapter.notifyDataSetChanged();
+                } else {
 
-                DataParcel dataParcel = data.getExtras().getParcelable(Constants.dataPojo);
-                if(dataParcel != null){
-
-                    MyApplication myApplication = (MyApplication) getApplicationContext();
-
-                    /** add to db **/
-                    int id = myApplication.writeToDb(dataParcel);
-                    dataParcel.setId(id);
-
-                    /** There is a custom entry request **/
-                    if(SavedLogTab.savedLogRecyclerViewAdapter != null) {
-                        SavedLogTab.savedLogRecyclerViewAdapter.addItem(dataParcel, 0);
-                        SavedLogTab.savedLogRecyclerViewAdapter.notifyDataSetChanged();
-                    } else {
-
-                        /** Caching data until saved logs appear **/
-                        if(cachedDataForCustomEntries == null) {
-                            cachedDataForCustomEntries = new ArrayList<>();
-                        }
-
-                        /** Add data parcel in cached log **/
-                        cachedDataForCustomEntries.add(dataParcel);
+                    /** Caching data until saved logs appear **/
+                    if(cachedDataForCustomEntries == null) {
+                        cachedDataForCustomEntries = new ArrayList<>();
                     }
+
+                    /** Add data parcel in cached log **/
+                    cachedDataForCustomEntries.add(dataParcel);
                 }
-                break;
+            }
         }
     }
 
@@ -611,6 +431,8 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
         /** Tell Call Logs that update ticks **/
         if(dataParcelArrayList != null && dataParcelArrayList.size() >0) {
             CallLogTab.updateTick(dataParcelArrayList);
+        } else if(dataParcelArrayList != null && dataParcelArrayList.size() == 0){
+            CallLogTab.clearTicks();
         }
 
         /** Custom entries log were cached its time to update **/
@@ -629,6 +451,7 @@ public class CallDetails extends BaseDrawerActivity implements GoogleApiClient.C
         /** Call feedback handling activity **/
         final Intent intent = new Intent(this, Feedback.class);
         intent.putExtra(Constants.agentName, AGENT_NAME);
+        intent.putExtra(Constants.customForm, true);
         startActivityForResult(intent, Constants.feedbackActivityRequestCode);
     }
 }
