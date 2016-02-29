@@ -20,6 +20,8 @@ public class CallDataObjectParcel implements Parcelable {
 
     private boolean showTick;
 
+    private boolean uploadedTick;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -97,6 +99,14 @@ public class CallDataObjectParcel implements Parcelable {
 
     public void setShowTick(boolean showTick) {
         this.showTick = showTick;
+    }
+
+    public boolean isUploadedTick() {
+        return uploadedTick;
+    }
+
+    public void setUploadedTick(boolean uploadedTick) {
+        this.uploadedTick = uploadedTick;
     }
 
     /******************************************/

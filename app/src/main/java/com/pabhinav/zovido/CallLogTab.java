@@ -128,6 +128,18 @@ public class CallLogTab extends Fragment {
                 if(intent.getExtras().getBoolean(Constants.isSubPart)){
                     cachedCallLogs.addAll(0,callLogs);
                 } else {
+
+                    /** update uploading ticks **/
+                    MyApplication myApplication = (MyApplication) context.getApplicationContext();
+                    ArrayList<String> allUploadedTimestamps = myApplication.getAllUploadedTimestamps();
+                    if(allUploadedTimestamps != null && allUploadedTimestamps.size() > 0){
+                        for(CallDataObjectParcel callDataObjectParcel : callLogs){
+                            if(allUploadedTimestamps.indexOf(callDataObjectParcel.getCallDate()) != -1){
+                                callDataObjectParcel.setUploadedTick(true);
+                            }
+                        }
+                    }
+
                     cachedCallLogs = new ArrayList<>();
                     cachedCallLogs.addAll(callLogs);
 
@@ -315,6 +327,25 @@ public class CallLogTab extends Fragment {
             if(mAdapter != null){
                 mAdapter.updateAllAtOnce(cachedCallLogs);
             }
+        }
+    }
+
+    /** Simply update uploaded ticks in Adapter **/
+    public static void updateUploadTickInAdapter(String timestamp){
+
+        if(mAdapter != null){
+
+            ArrayList<CallDataObjectParcel> callDataObjectParcels = mAdapter.getAllItems();
+            for(CallDataObjectParcel callDataObjectParcel : callDataObjectParcels){
+                if(callDataObjectParcel != null){
+                    if(callDataObjectParcel.getCallDate().equals(timestamp)) {
+                        callDataObjectParcel.setUploadedTick(true);
+                        break;
+                    }
+                }
+            }
+
+            mAdapter.notifyDataSetChanged();
         }
     }
 

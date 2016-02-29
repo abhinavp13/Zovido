@@ -10,6 +10,8 @@ import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
+import java.util.ArrayList;
+
 
 @ReportsCrashes(
         formUri = "t",
@@ -22,7 +24,9 @@ import org.acra.annotation.ReportsCrashes;
 )
 public class MyApplication extends Application {
 
+    private ArrayList<String> uploadedItemTimestamps;
     private DatabaseHelper databaseHelper;
+    private boolean fetchedOnceUploadedItems;
 
     @Override
     public void onCreate() {
@@ -48,6 +52,26 @@ public class MyApplication extends Application {
 
         /** Read database and keep in local storage **/
         databaseHelper = new DatabaseHelper(this);
+
+        /** Initialize the arraylist **/
+        uploadedItemTimestamps = new ArrayList<>();
+        fetchedOnceUploadedItems = false;
+    }
+
+    public ArrayList<String> getUploadedItemTimestamps() {
+        return uploadedItemTimestamps;
+    }
+
+    public void setUploadedItemTimestamps(ArrayList<String> uploadedItemTimestamps) {
+        this.uploadedItemTimestamps = uploadedItemTimestamps;
+    }
+
+    public boolean isFetchedOnceUploadedItems() {
+        return fetchedOnceUploadedItems;
+    }
+
+    public void setFetchedOnceUploadedItems(boolean fetchedOnceUploadedItems) {
+        this.fetchedOnceUploadedItems = fetchedOnceUploadedItems;
     }
 
     public DatabaseHelper getDatabaseHelper() {
@@ -55,6 +79,20 @@ public class MyApplication extends Application {
             databaseHelper = new DatabaseHelper(this);
         }
         return databaseHelper;
+    }
+
+    public ArrayList<String> getAllUploadedTimestamps(){
+        if(databaseHelper == null){
+            databaseHelper = new DatabaseHelper(this);
+        }
+        return databaseHelper.getAllUploadedItemsTimestamps();
+    }
+
+    public void addUploadingItemData(String timestamp){
+        if(databaseHelper == null){
+            databaseHelper = new DatabaseHelper(this);
+        }
+        databaseHelper.addUploadedItem(timestamp);
     }
 
     public void deleteFromDb(DataParcel dataParcel){

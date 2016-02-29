@@ -36,6 +36,14 @@ public class FetchCallLogsIntentService extends IntentService {
         /** Query for data **/
         ArrayList<CallDataObjectParcel> callLogs = getCallDataFromCallLogs(intent);
 
+        /** Need to fetch uploaded items **/
+        MyApplication myApplication = (MyApplication) getApplicationContext();
+        if(!myApplication.isFetchedOnceUploadedItems()) {
+            myApplication.setUploadedItemTimestamps(myApplication.getAllUploadedTimestamps());
+        } else {
+            myApplication.setFetchedOnceUploadedItems(true);
+        }
+
         /** Send Broadcast **/
         Intent broadcastIntent = new Intent();
         broadcastIntent.putExtra(Constants.isSubPart, isSubPart);

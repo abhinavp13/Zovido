@@ -84,10 +84,23 @@ public class CallLogRecyclerViewAdapter extends RecyclerView.Adapter<CallLogRecy
         } else {
             holder.callType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.missed_call));
         }
-        if(mDataset.get(position).isShowTick()){
+
+        boolean makeItVisible = false;
+        if(mDataset.get(position).isUploadedTick()){
             holder.tickImage.setVisibility(View.VISIBLE);
+            makeItVisible = true;
+            holder.tickImage.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.saved_tick_blue));
         } else {
             holder.tickImage.setVisibility(View.INVISIBLE);
+        }
+
+        if(mDataset.get(position).isShowTick()){
+            holder.tickImage.setVisibility(View.VISIBLE);
+            holder.tickImage.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.saved_tick_black));
+        } else {
+            if(!makeItVisible) {
+                holder.tickImage.setVisibility(View.INVISIBLE);
+            }
         }
     }
 

@@ -33,6 +33,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_SPT = "sport";
     private static final String KEY_REMARKS = "call_remarks";
 
+
+    // Uploaded Items meta data
+    private static final String TABLE_NAME_FOR_UPLOADED_ITEMS = "uploadeditems";
+
+    // Uploaded Items table columns names
+    private static final String KEY_ID_FOR_UPLOADED_ITEM = "id";
+    private static final String KEY_TIME_FOR_UPLOADED_ITEM = "uploadtime";
+
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -53,6 +62,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + KEY_REMARKS + " TEXT"
                 + ")";
         db.execSQL(CREATE_DataParcels_TABLE);
+
+        String CREATE_UPLOADED_ITEMS_TABLE = "CREATE TABLE " + TABLE_NAME_FOR_UPLOADED_ITEMS + "("
+                + KEY_ID_FOR_UPLOADED_ITEM + " INTEGER PRIMARY KEY,"
+                + KEY_TIME_FOR_UPLOADED_ITEM + " TEXT"
+                + ")";
+
+        db.execSQL(CREATE_UPLOADED_ITEMS_TABLE);
     }
 
     // Upgrading database
@@ -61,6 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FOR_UPLOADED_ITEMS);
 
         // Create tables again
         onCreate(db);
@@ -95,6 +112,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    // Adding Uploaded item
+    int addUploadedItem(String timestamp){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TIME_FOR_UPLOADED_ITEM, timestamp);
+
+        // Inserting Row
+        int id = (int)db.insert(TABLE_NAME_FOR_UPLOADED_ITEMS, null, values);
+        db.close(); // Closing database connection
+
+        Log.d("Zovido : ", "Insert Uploaded Item : " + String.valueOf(id));
+
+        return id;
+    }
+
     // Getting All DataParcels
     public ArrayList<DataParcel> getAllDataParcels() {
         
@@ -124,6 +158,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 // Adding contact to list
                 contactList.add(dataParcel);
                 
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        return contactList;
+    }
+
+    // Getting All DataParcels
+    public ArrayList<String> getAllUploadedItemsTimestamps() {
+
+        ArrayList<String> contactList = new ArrayList<>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME_FOR_UPLOADED_ITEMS;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                // Add the timestamp
+                contactList.add(cursor.getString(1));
             } while (cursor.moveToNext());
         }
 

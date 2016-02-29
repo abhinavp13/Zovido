@@ -154,7 +154,6 @@ public class UploadingService extends Service {
                     }
                     completedInsert.set(i, true);
 
-
                     /** Delete the item **/
                     MyApplication myApplication = (MyApplication)getApplicationContext();
                     DatabaseHelper databaseHelper;
@@ -164,6 +163,12 @@ public class UploadingService extends Service {
                         databaseHelper = new DatabaseHelper(context);
                     }
                     databaseHelper.deleteDataParcel(returnNewCopy(dataParcel));
+
+                    /** Make an entry of uploaded item **/
+                    databaseHelper.addUploadedItem(dataParcel.getTimestamp());
+                    if (myApplication != null) {
+                        myApplication.setFetchedOnceUploadedItems(false);
+                    }
 
                     /** Update Ui **/
                     Intent intent = new Intent();

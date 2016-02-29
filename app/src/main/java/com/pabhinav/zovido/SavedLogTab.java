@@ -92,11 +92,20 @@ public class SavedLogTab extends Fragment {
         updateUIReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if(SavedLogTab.savedLogRecyclerViewAdapter != null) {
-                    DataParcel dataParcel = intent.getExtras().getParcelable(Constants.dataPojo);
-                    if(dataParcel != null) {
-                        SavedLogTab.savedLogRecyclerViewAdapter.deleteDataParcel(dataParcel);
+
+                DataParcel dataParcel = intent.getExtras().getParcelable(Constants.dataPojo);
+
+                if(dataParcel != null){
+
+                    /** Update Saved Log **/
+                    if(SavedLogTab.savedLogRecyclerViewAdapter != null) {
+                            SavedLogTab.savedLogRecyclerViewAdapter.deleteDataParcel(dataParcel);
                     }
+
+                    /** Update Call logs for ticks for uploaded items **/
+                    CallLogTab.updateUploadTickInAdapter(dataParcel.getTimestamp());
+
+
                 }
             }
         };
