@@ -15,6 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:text="Name"
         android:textSize="12sp"
         android:layout_marginTop="10dp" />
@@ -25,8 +26,11 @@
         android:background="@color/heading_grey"
         android:layout_alignBottom="@+id/input_name"
         android:layout_alignEnd="@+id/input_name"
+        android:layout_alignRight="@+id/input_name"
         android:layout_height="1dp"
-        android:layout_alignStart="@+id/name_heading" />
+        android:layout_alignStart="@+id/name_heading"
+        android:layout_alignLeft="@+id/name_heading"
+        />
 
     <com.pabhinav.zovido.MyEditText
         android:id="@+id/input_name"
@@ -35,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
         android:textSize="18sp"
         android:singleLine="true"
         android:layout_marginBottom="8dp"

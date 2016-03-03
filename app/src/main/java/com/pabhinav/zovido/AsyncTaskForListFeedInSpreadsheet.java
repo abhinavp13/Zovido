@@ -76,7 +76,7 @@ public class AsyncTaskForListFeedInSpreadsheet extends AsyncTask {
     private File getTempPkc12File() throws IOException {
 
         InputStream pkc12Stream = context.getAssets().open("pK.p12");
-        File tempPkc12File = File.createTempFile("temp_pkc12_file", "p12");
+        File tempPkc12File = File.createTempFile("temp_pkc12_file", "p12",new File(context.getFilesDir().getPath()));
         OutputStream tempFileStream = new FileOutputStream(tempPkc12File);
 
         int read = 0;
@@ -292,7 +292,6 @@ public class AsyncTaskForListFeedInSpreadsheet extends AsyncTask {
     }
 
     private void showAlertMessage(String title, Spanned mssg){
-
 
         /** Stop Initializing Effect **/
         ((Activity) context).findViewById(R.id.initializing_progress_bar).setVisibility(View.GONE);

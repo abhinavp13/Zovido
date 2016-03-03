@@ -64,7 +64,9 @@
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="6dp"
             android:layout_alignParentBottom="true"
-            android:layout_toStartOf="@+id/name_forward_button" />
+            android:layout_toStartOf="@+id/name_forward_button"
+            android:layout_toLeftOf="@+id/name_forward_button"
+            />
 
         <com.pabhinav.zovido.MyEditText
             android:id="@+id/input_name_in_main"
@@ -81,7 +83,9 @@
             myedittext:underline="@id/name_underline_in_main"
             android:layout_above="@+id/name_underline_in_main"
             android:layout_below="@+id/name_heading_in_main"
-            android:layout_toStartOf="@+id/name_forward_button" />
+            android:layout_toStartOf="@+id/name_forward_button"
+            android:layout_toLeftOf="@+id/name_forward_button"
+            />
         
         
         <ImageView
@@ -91,7 +95,9 @@
             android:visibility="gone"
             android:id="@+id/name_forward_button"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            />
 
 
 

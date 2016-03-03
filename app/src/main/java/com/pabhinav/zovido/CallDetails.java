@@ -39,7 +39,6 @@ public class CallDetails extends BaseDrawerActivity implements SavedLogTab.OnSav
     private boolean toggleUpload;
     private ArrayList<DataParcel> cachedDataForCustomEntries;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

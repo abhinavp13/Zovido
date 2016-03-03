@@ -83,25 +83,27 @@
         android:id="@+id/fake_background_effect"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         android:onClick="uploadClicked"
         android:background="#55000000" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.pabhinav.zovido.CustomFloatingActionButton
         android:id="@+id/fab_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fabSize="normal"
         app:backgroundTint="@color/blue_light"
         android:onClick="uploadClicked"
-        android:layout_margin="16dp"
-        app:elevation="12dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:src="@drawable/ic_file_upload_white_24dp"
-        app:pressedTranslationZ="8dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.pabhinav.zovido.CustomFloatingActionButton
         android:id="@+id/export_to_local_storage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,65 +112,92 @@
         app:backgroundTint="@color/blue_light"
         android:layout_above="@id/fab_upload"
         android:layout_marginEnd="24dp"
-        android:visibility="gone"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="24dp"
+        android:visibility="visible"
         android:layout_alignParentRight="true"
-        app:elevation="12dp"
+        android:layout_alignParentEnd="true"
         android:src="@drawable/export_file"
-        app:pressedTranslationZ="8dp"
         />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.pabhinav.zovido.CustomFloatingActionButton
         android:id="@+id/export_to_cloud_storage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fabSize="mini"
         android:layout_marginBottom="16dp"
-        android:visibility="gone"
+        android:visibility="visible"
+        app:borderWidth="0dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:onClick="cloudExportClicked"
         app:backgroundTint="@color/blue_light"
-        app:elevation="12dp"
         android:src="@drawable/cloud_export"
-        app:pressedTranslationZ="8dp"
         android:layout_above="@id/export_to_local_storage"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        />
 
 
-    <TextView
-        android:id="@+id/text_for_export_to_local_storage"
-        android:background="@android:color/white"
-        android:elevation="4dp"
-        android:onClick="localExportClicked"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:text = "Export To Local Storage"
-        android:visibility="gone"
+        android:onClick="localExportClicked"
         android:gravity="center"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:layout_margin="8dp"
         android:layout_alignBottom="@+id/export_to_local_storage"
         android:layout_toStartOf="@+id/export_to_local_storage"
-        android:layout_alignTop="@+id/export_to_local_storage" />
+        android:layout_toLeftOf="@+id/export_to_local_storage"
+        android:layout_alignTop="@+id/export_to_local_storage"
+        >
 
-    <TextView
-        android:id="@+id/text_for_export_to_drive"
-        android:background="@android:color/white"
-        android:onClick="cloudExportClicked"
-        android:elevation="4dp"
-        android:visibility="gone"
+        <TextView
+            android:id="@+id/text_for_export_to_local_storage"
+            android:background="@android:color/white"
+            android:onClick="localExportClicked"
+            android:padding="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text = "Export To Local Storage"
+            android:visibility="visible"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:text = "Export To Drive"
+        android:onClick="cloudExportClicked"
+        android:visibility="visible"
         android:gravity="center"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:layout_margin="8dp"
+        android:background="@android:color/transparent"
         android:layout_alignBottom="@+id/export_to_cloud_storage"
         android:layout_toStartOf="@+id/export_to_cloud_storage"
-        android:layout_alignTop="@+id/export_to_cloud_storage" />
+        android:layout_toLeftOf="@+id/export_to_cloud_storage"
+        android:layout_alignTop="@+id/export_to_cloud_storage"
+        >
+
+
+        <TextView
+            android:id="@+id/text_for_export_to_drive"
+            android:background="@android:color/white"
+            android:onClick="cloudExportClicked"
+            android:visibility="visible"
+            android:padding="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text = "Export To Drive"
+            android:gravity="center" />
+
+    </RelativeLayout>
 
 
 
@@ -192,9 +221,12 @@
             android:visibility="gone"
             android:padding="20dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:progressDrawable="@drawable/circular_progress_bar"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            />
 
         <TextView
             android:padding="20dp"
@@ -202,7 +234,9 @@
             android:layout_height="wrap_content"
             android:text = "Preparing To Upload . . ."
             android:textColor="@android:color/white"
-            android:layout_toEndOf="@+id/progressBar" />
+            android:layout_toEndOf="@+id/progressBar"
+            android:layout_toRightOf="@+id/progressBar"
+            />
 
     </RelativeLayout>
 

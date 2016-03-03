@@ -36,7 +36,9 @@
             android:textColor="@android:color/white"
             android:text = "@string/app_name"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/drawer_toggler" />
+            android:layout_toEndOf="@+id/drawer_toggler"
+            android:layout_toRightOf="@+id/drawer_toggler"
+            />
 
 
         <RelativeLayout
@@ -47,7 +49,9 @@
             android:onClick = "customCallAdditionClicked"
             android:id="@+id/saved_item_addition_icon"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            >
 
             <ImageView
                 android:layout_width="22dp"

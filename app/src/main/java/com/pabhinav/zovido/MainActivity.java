@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -92,9 +93,14 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        /** Scene Transition **/
-        TransitionHelper transitionHelper = new TransitionHelper();
-        transitionHelper.doSceneTransition(R.id.root_layout, R.layout.activity_main_name_input, this);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            /** Scene Transition **/
+            TransitionHelper transitionHelper = new TransitionHelper();
+            transitionHelper.doSceneTransition(R.id.root_layout, R.layout.activity_main_name_input, this);
+        } else {
+            setContentView(R.layout.activity_main_name_input);
+        }
+
 
         /**
          *  After scene transition, do some scaling and translation for text

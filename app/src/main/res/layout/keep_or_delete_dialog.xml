@@ -38,10 +38,13 @@
         android:text="Yes"
         android:layout_marginLeft="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_below="@+id/textView12"
-        android:layout_toStartOf="@+id/button_no" />
+        android:layout_toStartOf="@+id/button_no"
+        android:layout_toLeftOf="@+id/button_no"
+        />
 
     <Button
         android:id="@+id/button_no"
@@ -51,8 +54,11 @@
         android:textColor="@android:color/black"
         android:text="No"
         android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_alignTop="@+id/button_yes"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        />
 
 
 </RelativeLayout>

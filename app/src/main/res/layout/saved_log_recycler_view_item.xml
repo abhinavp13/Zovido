@@ -41,12 +41,16 @@
                 android:text="Abhinav Puri"
                 android:id="@+id/saved_user_name"
                 android:layout_alignStart="@+id/purpose_saved_text_vew"
-                android:layout_toStartOf="@+id/relativeLayout_for_edit" />
+                android:layout_alignLeft="@+id/purpose_saved_text_vew"
+                android:layout_toStartOf="@+id/relativeLayout_for_edit"
+                android:layout_toLeftOf="@+id/relativeLayout_for_edit"
+                />
 
             <RelativeLayout
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:id="@+id/relativeLayout_for_edit">
 
                 <ImageView
@@ -54,6 +58,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:background="@drawable/ic_settings_black_24dp" />
 
             </RelativeLayout>
@@ -82,7 +87,9 @@
                 android:id ="@+id/purpose_saved_text_vew"
                 android:layout_below="@+id/saved_phone_number"
                 android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="8dp"
                 android:singleLine="true"
                 android:ellipsize="marquee"
@@ -96,7 +103,9 @@
                 android:id ="@+id/product_saved_text_view"
                 android:layout_below="@+id/purpose_saved_text_vew"
                 android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit="marquee_forever"
@@ -112,7 +121,9 @@
                 android:id ="@+id/sport_saved_text_view"
                 android:layout_below="@+id/product_saved_text_view"
                 android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit="marquee_forever"
@@ -146,7 +157,9 @@
                 android:textColor="#999999"
                 android:singleLine="true"
                 android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
                 android:ellipsize="marquee"
                 android:textSize="10sp"
                 android:marqueeRepeatLimit="marquee_forever"
@@ -159,7 +172,9 @@
 
             <LinearLayout
                 android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="8dp"
                 android:layout_below="@+id/saved_duration"
                 android:layout_width="match_parent"
@@ -187,7 +202,9 @@
                         android:layout_margin="10dp"
                         android:id="@+id/textView"
                         android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/imageView2" />
+                        android:layout_toEndOf="@+id/imageView2"
+                        android:layout_toRightOf="@+id/imageView2"
+                        />
 
                     <ImageView
                         android:layout_margin="10dp"
@@ -222,9 +239,12 @@
                         android:textColor="#4E9688"
                         android:textSize="16sp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:text="Modify"
                         android:layout_alignTop="@+id/imageView3"
-                        android:layout_toEndOf="@+id/imageView3" />
+                        android:layout_toEndOf="@+id/imageView3"
+                        android:layout_toRightOf="@+id/imageView3"
+                        />
 
                     <ImageView
                         android:layout_margin="10dp"

@@ -45,7 +45,9 @@
             android:layout_height="64dp"
             android:background="@drawable/cloud_24"
             android:layout_below="@+id/app_title_text_view"
-            android:layout_alignEnd="@+id/app_title_text_view" />
+            android:layout_alignEnd="@+id/app_title_text_view"
+            android:layout_alignRight="@+id/app_title_text_view"
+            />
 
 
         <TextView
@@ -60,7 +62,9 @@
             android:visibility="invisible"
             android:text="Helps save your call details to cloud"
             android:layout_below="@+id/icon_image_view"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            />
 
         <ImageView
             android:layout_marginTop="50dp"
@@ -69,7 +73,9 @@
             android:layout_height="64dp"
             android:background="@drawable/white_phone_24"
             android:layout_below="@+id/app_title_text_view"
-            android:layout_alignStart="@+id/app_title_text_view" />
+            android:layout_alignStart="@+id/app_title_text_view"
+            android:layout_alignLeft="@+id/app_title_text_view"
+            />
 
 
 

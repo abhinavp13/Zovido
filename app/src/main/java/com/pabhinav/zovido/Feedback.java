@@ -236,33 +236,33 @@ public class Feedback extends AppCompatActivity {
         if(toggleStatesForDropDown.toggleForPurpose){
             purposeLinearLayout.setVisibility(View.VISIBLE);
             shadowPurposeLinearLayout.setVisibility(View.VISIBLE);
-            purposeDropDownIcon.setBackground(getResources().getDrawable(R.drawable.blue_arrow_inverted));
+            purposeDropDownIcon.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_arrow_inverted));
         } else {
             purposeLinearLayout.setVisibility(View.GONE);
             shadowPurposeLinearLayout.setVisibility(View.GONE);
-            purposeDropDownIcon.setBackground(getResources().getDrawable(R.drawable.blue_arrow));
+            purposeDropDownIcon.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_arrow));
         }
 
         /** Validate Product Menu **/
         if(toggleStatesForDropDown.toggleForProduct){
             productLinearLayout.setVisibility(View.VISIBLE);
             shadowProductLinearLayout.setVisibility(View.VISIBLE);
-            productDropDownIcon.setBackground(getResources().getDrawable(R.drawable.blue_arrow_inverted));
+            productDropDownIcon.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_arrow_inverted));
         } else {
             productLinearLayout.setVisibility(View.GONE);
             shadowProductLinearLayout.setVisibility(View.GONE);
-            productDropDownIcon.setBackground(getResources().getDrawable(R.drawable.blue_arrow));
+            productDropDownIcon.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_arrow));
         }
 
         /** Validate Sport Menu **/
         if(toggleStatesForDropDown.toggleForSport){
             sportLinearLayout.setVisibility(View.VISIBLE);
             shadowSportLinearLayout.setVisibility(View.VISIBLE);
-            sportDropDownIcon.setBackground(getResources().getDrawable(R.drawable.blue_arrow_inverted));
+            sportDropDownIcon.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_arrow_inverted));
         } else {
             sportLinearLayout.setVisibility(View.GONE);
             shadowSportLinearLayout.setVisibility(View.GONE);
-            sportDropDownIcon.setBackground(getResources().getDrawable(R.drawable.blue_arrow));
+            sportDropDownIcon.setBackgroundDrawable(getResources().getDrawable(R.drawable.blue_arrow));
         }
 
     }

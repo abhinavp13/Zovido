@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -113,6 +115,9 @@ public class SavedLogTab extends Fragment {
             attachedActivity.registerReceiver(updateUIReceiver, intentFilter);
         }
 
+        /** Close fab menu drawer **/
+        closeFabMenu(rootView);
+
         return rootView;
     }
 
@@ -125,6 +130,24 @@ public class SavedLogTab extends Fragment {
         savedLogRecyclerViewAdapter.setOnItemClickListener(recyclerItemClickListener);
     }
 
+
+    /** closes the fab menu drawer **/
+    private void closeFabMenu(View rootView){
+
+        View fakeBackgroundEffect = (View) rootView.findViewById(R.id.fake_background_effect);
+        FloatingActionButton fabUpload = (FloatingActionButton) rootView.findViewById(R.id.fab_upload);
+        FloatingActionButton localDataStorageFab = (FloatingActionButton) rootView.findViewById(R.id.export_to_local_storage);
+        FloatingActionButton cloudDataStorageFab = (FloatingActionButton) rootView.findViewById(R.id.export_to_cloud_storage);
+        TextView exportToDriveText = (TextView) rootView.findViewById(R.id.text_for_export_to_drive);
+        TextView exportToLocalText = (TextView) rootView.findViewById(R.id.text_for_export_to_local_storage);
+
+        fabUpload.setImageDrawable(getResources().getDrawable(R.drawable.ic_file_upload_white_24dp));
+        fakeBackgroundEffect.setVisibility(View.GONE);
+        localDataStorageFab.setVisibility(View.GONE);
+        cloudDataStorageFab.setVisibility(View.GONE);
+        exportToDriveText.setVisibility(View.GONE);
+        exportToLocalText.setVisibility(View.GONE);
+    }
 
     class RecyclerItemClickListener implements SavedLogRecyclerViewAdapter.MyClickListener{
 

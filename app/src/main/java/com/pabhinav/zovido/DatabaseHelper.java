@@ -105,7 +105,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Inserting Row
         int id = (int)db.insert(TABLE_NAME, null, values);
-        db.close(); // Closing database connection
 
         Log.d("Zovido : Insert : ", String.valueOf(id));
 
@@ -122,7 +121,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Inserting Row
         int id = (int)db.insert(TABLE_NAME_FOR_UPLOADED_ITEMS, null, values);
-        db.close(); // Closing database connection
 
         Log.d("Zovido : ", "Insert Uploaded Item : " + String.valueOf(id));
 
@@ -239,7 +237,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         int updateCode = db.update(TABLE_NAME, values, KEY_ID + " = ?", new String[] { String.valueOf(dataParcel.getId()) });
-        db.close();
         Log.d("Zovido : Update : ", String.valueOf(updateCode));
         return updateCode;
     }
@@ -249,7 +246,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         int deletecode = db.delete(TABLE_NAME, KEY_ID + " = ?", new String[] { String.valueOf(dataParcel.getId()) });
         Log.d("Zovido : Delete : ", String.valueOf(deletecode));
-        db.close();
     }
 
 

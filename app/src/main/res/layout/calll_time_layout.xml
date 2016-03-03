@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:text="Call Time"
         android:textSize="12sp"
         android:layout_marginTop="16dp" />
@@ -23,9 +24,12 @@
         android:background="@color/heading_grey"
         android:layout_alignBottom="@+id/input_call_time"
         android:layout_alignEnd="@+id/input_call_time"
+        android:layout_alignRight="@+id/input_call_time"
         android:layout_height="1dp"
         android:visibility="visible"
-        android:layout_alignStart="@+id/call_time_heading" />
+        android:layout_alignStart="@+id/call_time_heading"
+        android:layout_alignLeft="@+id/call_time_heading"
+        />
 
     <com.pabhinav.zovido.MyEditText
         android:id="@+id/input_call_time"
@@ -33,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
         android:inputType="textPersonName"
         android:textSize="16sp"
         android:singleLine="true"

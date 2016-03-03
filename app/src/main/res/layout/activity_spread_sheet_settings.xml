@@ -46,7 +46,9 @@
                     android:textColor="@android:color/white"
                     android:text = "Settings"
                     android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/cover_for_back_arrow_spreadsheet" />
+                    android:layout_toEndOf="@+id/cover_for_back_arrow_spreadsheet"
+                    android:layout_toRightOf="@+id/cover_for_back_arrow_spreadsheet"
+                    />
 
 
             </RelativeLayout>
@@ -61,6 +63,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
+                android:layout_marginLeft="18dp"
                 android:textColor="@android:color/white"
                 android:text="Sheet File Key"
                 android:textSize="14sp"
@@ -73,8 +76,11 @@
                 android:background="@android:color/white"
                 android:layout_alignBottom="@+id/input_sheet_file_key"
                 android:layout_alignEnd="@+id/input_sheet_file_key"
+                android:layout_alignRight="@+id/input_sheet_file_key"
                 android:layout_height="1dp"
-                android:layout_alignStart="@+id/sheet_file_key_heading" />
+                android:layout_alignStart="@+id/sheet_file_key_heading"
+                android:layout_alignLeft="@+id/sheet_file_key_heading"
+                />
 
             <EditText
                 android:id="@+id/input_sheet_file_key"
@@ -90,7 +96,9 @@
                 android:layout_marginBottom="8dp"
                 android:background="@null"
                 android:layout_below="@+id/sheet_file_key_heading"
-                android:layout_alignStart="@+id/sheet_file_key_heading" />
+                android:layout_alignStart="@+id/sheet_file_key_heading"
+                android:layout_alignLeft="@+id/sheet_file_key_heading"
+                />
 
 
 
@@ -104,7 +112,9 @@
                 android:text="WorkSheet Name"
                 android:textSize="14sp"
                 android:layout_centerVertical="true"
-                android:layout_alignStart="@+id/sheet_file_key_underline" />
+                android:layout_alignStart="@+id/sheet_file_key_underline"
+                android:layout_alignLeft="@+id/sheet_file_key_underline"
+                />
 
             <View
                 android:id="@+id/worksheet_underline"
@@ -112,8 +122,11 @@
                 android:background="@android:color/white"
                 android:layout_alignBottom="@+id/input_worksheet"
                 android:layout_alignEnd="@+id/input_worksheet"
+                android:layout_alignRight="@+id/input_worksheet"
                 android:layout_height="1dp"
-                android:layout_alignStart="@+id/worksheet_heading" />
+                android:layout_alignStart="@+id/worksheet_heading"
+                android:layout_alignLeft="@+id/worksheet_heading"
+                />
 
             <EditText
                 android:id="@+id/input_worksheet"
@@ -129,7 +142,9 @@
                 android:layout_marginBottom="8dp"
                 android:background="@null"
                 android:layout_below="@+id/worksheet_heading"
-                android:layout_alignStart="@+id/worksheet_heading" />
+                android:layout_alignStart="@+id/worksheet_heading"
+                android:layout_alignLeft="@+id/worksheet_heading"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -142,6 +157,7 @@
                 android:text="Save Settings"
                 android:layout_below="@+id/input_worksheet"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:id="@+id/textView14" />
 
             <TextView
@@ -154,7 +170,9 @@
                 android:textColor="@android:color/white"
                 android:text="Revert Settings"
                 android:layout_alignTop="@+id/textView14"
-                android:layout_toStartOf="@+id/textView14" />
+                android:layout_toStartOf="@+id/textView14"
+                android:layout_toLeftOf="@+id/textView14"
+                />
 
         </RelativeLayout>
 
@@ -182,11 +200,15 @@
             android:layout_height="wrap_content"
             android:textColor="@color/heading_grey_dark"
             android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:textSize="16sp"
             android:text="It is important that your Google Spreadsheet is properly configured with Zovido."
             android:layout_below="@+id/textView13"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -199,7 +221,9 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.7"
                 android:paddingStart="8dp"
+                android:paddingLeft="8dp"
                 android:paddingEnd="4dp"
+                android:paddingRight="4dp"
                 android:paddingBottom="16dp"
                 android:paddingTop="16dp"
                 android:textSize="16sp"
@@ -220,7 +244,9 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:paddingStart="8dp"
+                android:paddingLeft="8dp"
                 android:paddingEnd="16dp"
+                android:paddingRight="16dp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:textColor="@color/blue_light"

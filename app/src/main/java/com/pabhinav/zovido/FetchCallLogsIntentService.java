@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.CallLog;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telecom.Call;
 
 import java.util.ArrayList;
@@ -55,8 +57,10 @@ public class FetchCallLogsIntentService extends IntentService {
 
     public String getContactName(String phoneNumber) {
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-            return null;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+                return null;
+            }
         }
 
         ContentResolver cr = getContentResolver();
@@ -79,8 +83,10 @@ public class FetchCallLogsIntentService extends IntentService {
 
     private ArrayList<CallDataObjectParcel> getCallDataFromCallLogs(Intent intent){
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
-            return null;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
+                return null;
+            }
         }
 
         Cursor managedCursor = getContentResolver().query(

@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:text="Sport"
         android:textSize="12sp"
         android:id="@+id/sport_heading" />
@@ -20,18 +21,22 @@
         android:layout_height="16dp"
         android:background="@android:color/white"
         android:layout_below="@+id/main_sport_text_view_underline"
-        android:layout_alignEnd="@+id/main_sport_text_view_underline" />
+        android:layout_alignEnd="@+id/main_sport_text_view_underline"
+        android:layout_alignRight="@+id/main_sport_text_view_underline" />
 
     <View
         android:id="@+id/shadow_sport_linear_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="-14dp"
+        android:layout_marginLeft="-14dp"
         android:layout_marginTop="-5dp"
         android:layout_marginEnd="-16dp"
+        android:layout_marginRight="-16dp"
         android:visibility="visible"
         android:background="@drawable/drop_down"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignBottom="@+id/sport_linear_layout"
         android:layout_below="@+id/sport_main_text_view" />
 
@@ -49,7 +54,9 @@
         android:id="@+id/sport_main_text_view"
         android:layout_below="@+id/sport_heading"
         android:layout_alignStart="@+id/sport_heading"
-        android:layout_toStartOf="@+id/blue_arrow_drop_down_sport" />
+        android:layout_alignLeft="@+id/sport_heading"
+        android:layout_toStartOf="@+id/blue_arrow_drop_down_sport"
+        android:layout_toLeftOf="@+id/blue_arrow_drop_down_sport" />
 
     <View
         android:layout_width="wrap_content"
@@ -57,7 +64,9 @@
         android:background="@color/heading_grey"
         android:layout_below="@+id/sport_main_text_view"
         android:layout_alignStart="@+id/sport_main_text_view"
+        android:layout_alignLeft="@+id/sport_main_text_view"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:id="@+id/main_sport_text_view_underline" />
 
 
@@ -203,6 +212,7 @@
         android:layout_gravity = "center"
         android:id="@+id/blue_arrow_drop_down_sport"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignBottom="@+id/sport_main_text_view"
         android:layout_below="@+id/sport_heading">
 

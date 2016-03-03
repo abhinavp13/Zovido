@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:text="Phone Number"
         android:textSize="12sp"
         android:layout_marginTop="8dp" />
@@ -24,8 +25,11 @@
         android:background="@color/heading_grey"
         android:layout_alignBottom="@+id/input_phone_no"
         android:layout_alignEnd="@+id/input_phone_no"
+        android:layout_alignRight="@+id/input_phone_no"
         android:layout_height="1dp"
-        android:layout_alignStart="@+id/phone_number_heading" />
+        android:layout_alignStart="@+id/phone_number_heading"
+        android:layout_alignLeft="@+id/phone_number_heading"
+        />
 
     <com.pabhinav.zovido.MyEditText
         android:id="@+id/input_phone_no"
@@ -33,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
         android:inputType="number"
         android:maxLength="13"
         android:textSize="18sp"

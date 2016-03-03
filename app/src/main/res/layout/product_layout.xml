@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:text="Product"
         android:textSize="12sp"
         android:id="@+id/product_heading" />
@@ -21,18 +22,23 @@
         android:layout_height="16dp"
         android:background="@android:color/white"
         android:layout_below="@+id/main_product_text_view_underline"
-        android:layout_alignEnd="@+id/main_product_text_view_underline" />
+        android:layout_alignEnd="@+id/main_product_text_view_underline"
+        android:layout_alignRight="@+id/main_product_text_view_underline"
+        />
 
     <View
         android:id="@+id/shadow_product_linear_layout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="-14dp"
+        android:layout_marginLeft="-14dp"
         android:layout_marginTop="-5dp"
         android:layout_marginEnd="-16dp"
+        android:layout_marginRight="-16dp"
         android:visibility="visible"
         android:background="@drawable/drop_down"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignBottom="@+id/product_linear_layout"
         android:layout_below="@+id/product_main_text_view" />
 
@@ -43,14 +49,16 @@
         android:layout_marginTop="8dp"
         android:onClick="productToggleClicked"
         android:textColor="@android:color/black"
-        android:text = "Coaching / Acedemy"
+        android:text = "Coaching / Academy"
         android:singleLine="true"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:id="@+id/product_main_text_view"
         android:layout_below="@+id/product_heading"
         android:layout_alignStart="@+id/product_heading"
-        android:layout_toStartOf="@+id/blue_arrow_drop_down_product" />
+        android:layout_alignLeft="@+id/product_heading"
+        android:layout_toStartOf="@+id/blue_arrow_drop_down_product"
+        android:layout_toLeftOf="@+id/blue_arrow_drop_down_product" />
 
     <View
         android:layout_width="wrap_content"
@@ -58,7 +66,9 @@
         android:background="@color/heading_grey"
         android:layout_below="@+id/product_main_text_view"
         android:layout_alignStart="@+id/product_main_text_view"
+        android:layout_alignLeft="@+id/product_main_text_view"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:id="@+id/main_product_text_view_underline" />
 
     
@@ -160,6 +170,7 @@
         android:layout_gravity = "center"
         android:id="@+id/blue_arrow_drop_down_product"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignBottom="@+id/product_main_text_view"
         android:layout_below="@+id/product_heading">
 
